@@ -12,7 +12,7 @@ gem 'wirble'
 gem 'hirb'
 gem 'awesome_print'
 
-gem 'mysql2'
+#gem 'mysql2'
 gem 'haml'
 gem 'compass', ">= 0.10.6"
 gem 'json'
@@ -26,6 +26,7 @@ gem 'hpricot'
 gem 'memcache-client'
 
 gem 'pry'
+gem 'nokogiri', '1.4.4.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
