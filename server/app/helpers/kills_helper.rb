@@ -1,0 +1,2 @@
+module KillsHelper
+end

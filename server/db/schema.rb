@@ -10,6 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20110212220203) do
+
+  create_table "kills", :force => true do |t|
+    t.integer  "killer_id"
+    t.integer  "victim_id"
+    t.string   "location"
+    t.string   "photo_uid"
+    t.string   "attack_sequence"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
