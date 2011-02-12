@@ -1,17 +1,35 @@
-/* line 3, ../../app/stylesheets/obituaries.sass */
+@charset "UTF-8";
+@font-face {
+  font-family: "Carbon Type";
+  src: local("☺"), url(/fonts/CarbonType-fontfacekit/carbontype-webfont.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "Harting";
+  src: local("☺"), url(/fonts/Harting-fontfacekit/Harting_plain-webfont.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: "MomsTypewriter";
+  src: local("☺"), url(/fonts/MomsTypewriter-fontfacekit/Moms_typewriter-webfont.ttf) format('truetype');
+}
+
+/* line 9, ../../app/stylesheets/obituaries.sass */
 #obituaries-show {
   width: 750px;
   background-image: url(/images/old_paper.jpg);
   min-height: 600px;
 }
-/* line 8, ../../app/stylesheets/obituaries.sass */
+/* line 14, ../../app/stylesheets/obituaries.sass */
 #obituaries-show .obit {
   margin-left: auto;
   margin-right: auto;
   padding-top: 80px;
   width: 550px;
+  font-family: "MomsTypewriter";
+  font-size: 16px;
 }
-/* line 14, ../../app/stylesheets/obituaries.sass */
+/* line 22, ../../app/stylesheets/obituaries.sass */
 #obituaries-show .obit .name {
   float: left;
   font-weight: bold;
