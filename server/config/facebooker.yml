@@ -1,0 +1,4 @@
+example:
+  app_id: yourappid
+  secret: yourappsecret
+  api_key: yourapikey
