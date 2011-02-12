@@ -1,0 +1,134 @@
+GIT
+  remote: git://github.com/Mange/roadie.git
+  revision: 8eaa87a0c6669f45f1bf064bce2090855cc93d0b
+  specs:
+    roadie (1.0.0.pre2)
+      actionmailer (~> 3.0.0)
+      css_parser
+      nokogiri
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    abstract (1.0.0)
+    actionmailer (3.0.4)
+      actionpack (= 3.0.4)
+      mail (~> 2.2.15)
+    actionpack (3.0.4)
+      activemodel (= 3.0.4)
+      activesupport (= 3.0.4)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.4)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.13)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.4)
+      activesupport (= 3.0.4)
+      builder (~> 2.1.2)
+      i18n (~> 0.4)
+    activerecord (3.0.4)
+      activemodel (= 3.0.4)
+      activesupport (= 3.0.4)
+      arel (~> 2.0.2)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.4)
+      activemodel (= 3.0.4)
+      activesupport (= 3.0.4)
+    activesupport (3.0.4)
+    arel (2.0.8)
+    awesome_print (0.3.2)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
+    builder (2.1.2)
+    compass (0.10.6)
+      haml (>= 3.0.4)
+    css_parser (1.1.5)
+    daemons (1.0.10)
+    dragonfly (0.8.2)
+      rack
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    gem_plugin (0.2.3)
+    haml (3.0.25)
+    hirb (0.3.6)
+    hpricot (0.8.3)
+    i18n (0.5.0)
+    json (1.5.1)
+    mail (2.2.15)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    memcache-client (1.8.5)
+    method_source (0.2.0)
+    mime-types (1.16)
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
+    mysql2 (0.2.6)
+    nokogiri (1.4.4)
+    polyglot (0.3.1)
+    pry (0.4.8)
+      method_source (>= 0.2.0)
+      ruby_parser (>= 2.0.5)
+    rack (1.2.1)
+    rack-cache (1.0)
+      rack (>= 0.4)
+    rack-mount (0.6.13)
+      rack (>= 1.0.0)
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rails (3.0.4)
+      actionmailer (= 3.0.4)
+      actionpack (= 3.0.4)
+      activerecord (= 3.0.4)
+      activeresource (= 3.0.4)
+      activesupport (= 3.0.4)
+      bundler (~> 1.0)
+      railties (= 3.0.4)
+    railties (3.0.4)
+      actionpack (= 3.0.4)
+      activesupport (= 3.0.4)
+      rake (>= 0.8.7)
+      thor (~> 0.14.4)
+    rake (0.8.7)
+    ruby_parser (2.0.5)
+      sexp_processor (~> 3.0)
+    settingslogic (2.0.6)
+    sexp_processor (3.0.5)
+    sqlite3 (1.3.3)
+    thor (0.14.6)
+    treetop (1.4.9)
+      polyglot (>= 0.3.1)
+    tzinfo (0.3.24)
+    uuidtools (2.1.2)
+    wirble (0.1.3)
+    xml-simple (1.0.14)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  aws-s3
+  compass (>= 0.10.6)
+  dragonfly
+  haml
+  hirb
+  hpricot
+  json
+  memcache-client
+  mongrel (>= 1.2.0pre2)
+  mysql2
+  pry
+  rack-cache
+  rails (= 3.0.4)
+  roadie!
+  settingslogic
+  sqlite3
+  uuidtools
+  wirble
