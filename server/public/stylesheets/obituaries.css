@@ -1,9 +1,15 @@
-/* line 1, ../../app/stylesheets/obituaries.sass */
-#obituaries-index {
-  background-color: orange;
-}
-
 /* line 3, ../../app/stylesheets/obituaries.sass */
-#obituaries-index {
-  background-color: pink;
+#obituaries-show {
+  width: 750px;
+}
+/* line 6, ../../app/stylesheets/obituaries.sass */
+#obituaries-show #obit {
+  margin-left: auto;
+  margin-right: auto;
+  width: 550px;
+}
+/* line 11, ../../app/stylesheets/obituaries.sass */
+#obituaries-show #obit .name {
+  font-weight: bold;
+  width: 330px;
 }

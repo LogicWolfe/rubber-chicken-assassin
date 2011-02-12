@@ -3,5 +3,6 @@ class ObituariesController < ApplicationController
   end
   
   def show
+		@name = "Sarah Wilson"
   end
 end
