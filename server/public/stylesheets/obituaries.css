@@ -1,15 +1,19 @@
 /* line 3, ../../app/stylesheets/obituaries.sass */
 #obituaries-show {
   width: 750px;
+  background-image: url(/images/old_paper.jpg);
+  min-height: 600px;
 }
-/* line 6, ../../app/stylesheets/obituaries.sass */
-#obituaries-show #obit {
+/* line 8, ../../app/stylesheets/obituaries.sass */
+#obituaries-show .obit {
   margin-left: auto;
   margin-right: auto;
+  padding-top: 80px;
   width: 550px;
 }
-/* line 11, ../../app/stylesheets/obituaries.sass */
-#obituaries-show #obit .name {
+/* line 14, ../../app/stylesheets/obituaries.sass */
+#obituaries-show .obit .name {
+  float: left;
   font-weight: bold;
   width: 330px;
 }
