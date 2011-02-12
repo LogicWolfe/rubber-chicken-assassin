@@ -1,5 +1,7 @@
 Assassin::Application.routes.draw do
 
+  resources :kills
+
   resources :obituaries
   
   # The priority is based upon order of creation:
