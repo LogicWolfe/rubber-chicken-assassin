@@ -49,8 +49,15 @@ class ObituariesController < ApplicationController
   def index
   end
 
-  # TODO: Refactor out all the RestClient get calls and change it so that you can pass in a param for the type of call
-  #       Returns a JSON hash
+  def get_facebook_data(victim, type, access_token)
+    if type == nil
+      response = RestClient.get "https://graph.facebook.com/#{victim}", :params => { :access_token => access_token }
+    else
+      response = RestClient.get "https://graph.facebook.com/#{victim}/#{type}", :params => { :access_token => access_token }
+    end
+    return JSON.parse(response.body)
+  end
+
   # TODO: Randomize the [0] from [0..MAX_ITEMS_OF_TYPE] so that you don't get the same item every time, unless you want it
   #       [0] is usually the latest "created_time"
   # TODO: Get Assassin's full name
@@ -60,13 +67,15 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.VSynNLl0v2y0BkH6RLJ9kg__.3600.1297584000-120406278|n6FmTgOiHq4oooopIYav_ZWmO8s'
+    @access_token = '2227470867|2.fG5_UFptDCqPVC9d_4o03g__.3600.1297627200-120406278|F9VhrETi1dHVKtb7UP3LT7I7jpE'
 
     # Put victim's Facebook ID or vanity name here
     @victim = 'tonytones'
 
-    response = RestClient.get 'https://graph.facebook.com/' + @victim, :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    # Put assassin's name here
+    @assassin = 'FILL_THIS_IN'
+
+    @body = get_facebook_data(@victim, nil, @access_token)
     @first_name = @body["first_name"]
     @last_name = @body["last_name"]
     @full_date = Time.new.strftime("%B %d, %Y")
@@ -77,21 +86,17 @@ class ObituariesController < ApplicationController
       @he_she = "she";
       @his_her = "her";
     end
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/friends', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    @body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/movies', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    @body = get_facebook_data(@victim, 'movies', @access_token)
     @favorite_movie = @body["data"][0]["name"]
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/music', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/feed', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    @body = get_facebook_data(@victim, 'feed', @access_token)
     @last_status_update = @body["data"][0]["message"]
     @location = "LOCATION"
-    @assassin_full_name = "ASSASSIN_FULL_NAME"
-    @assassin_photo_url = "https://graph.facebook.com/" + @victim + "/picture?type=large&access_token=" + @access_token
+    @assassin_full_name = @assassin
+    @assassin_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
 
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
