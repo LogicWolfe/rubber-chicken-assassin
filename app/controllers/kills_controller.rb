@@ -54,28 +54,28 @@ class KillsController < ApplicationController
     @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
 
     @body = get_facebook_data(@kill.victim_id, 'movies', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0] == nil)
       @favorite_movie = 'DEFAULT'
     else
       @favorite_movie = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'music', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0] == nil)
       @favorite_band = 'DEFAULT'
     else
       @favorite_band = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'books', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0] == nil)
       @favorite_book = 'DEFAULT'
     else
       @favorite_book = @body["data"][0]["name"]
     end
 
-    @body = get_facebook_data(@kil.victim_id, 'events', @access_token)
-    if (@body["data"][0].length > 0)
+    @body = get_facebook_data(@kill.victim_id, 'events', @access_token)
+    if (@body["data"][0] == nil)
       @recent_event = 'DEFAULT'
     else
       @recent_event = @body["data"][0]["name"]
