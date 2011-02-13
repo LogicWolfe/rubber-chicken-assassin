@@ -12,6 +12,15 @@ class ObituariesController < ApplicationController
   ]
 
   DEATH_DESC = [
+    "<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.",
+    "<%=@first_name%> was tragically assassinated; an autopsy has revelaed that a deadly <%=@sequence_last_blow%> blow from a rubber cheicken was the cause of death.",
+    "<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.",
+    "<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.",
+    "<%=@first_name%> was quickly rendered lifeless after receiving <%=@number_blows%> blows to the head from the business end of a rubber chicken.",
+    "<%=@first_name%> was bludgeoned to death from <%=@number_blows%> blows to the head delivered via rubber chicken.",
+    "<%=@first_name%> breathed <%=@his_her%> last breath shortly after receiving <%=@number_blows%> blows to the head from the deadly end of a rubber chicken.",
+    "<%=@first_name%> left this world violently after receiving <%=@number_blows%> noisy whacks to the head by a rubber chicken.",
+    "<%=@first_name%> passed away after a <%=@attack_length%> second battle with a rubber-chicken wielding assassin.",
     "<%=@first_name%> was whacked, figuratively and literally, by a rubber-chicken wielding assassin.",
     "<%=@first_name%> was smote by a wild-eyed, rubber-chicken-wielding assassin.",
     "<%=@first_name%> was scratched off the surface of the earth after an untimely and unfortunate encounter with a rubber-chicken carrying assassin.",
@@ -83,9 +92,6 @@ class ObituariesController < ApplicationController
     "<%=@first_name%> asked to be remembered by <%=@his_her%> final words, \"<%=@last_status_update%>\"."
   ]
 
-  RANDOM_FACTS = [
-  ]
-
   ASSASSIN_SECTION = [
     "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a worn and beaten rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
     "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a heavily-tattered rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
@@ -117,7 +123,7 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
+    @access_token = '2227470867|2.hwS75cdCoeyahJ2f7vUs7Q__.3600.1297638000-511852582|ZPznQkvH9iJHrw4vDinPIDC33MQ'
 
     # Put victim's Facebook ID or vanity name here
     @victim = 'logicwolfe'
@@ -131,7 +137,7 @@ class ObituariesController < ApplicationController
     @time_killed = @time.strftime("%I:%M %p")
 
     #Attack Information
-    @number_blows = "BLOWS"
+    @number_blows = "NUMBER_BLOWS"
     @attack_length = "LENGTH_ATTACK" #in seconds
     @sequence_last_blow = "LAST_BLOW" #need last blow that killed the victim
 
