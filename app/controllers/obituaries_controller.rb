@@ -130,6 +130,11 @@ class ObituariesController < ApplicationController
     @full_date = @time.strftime("%B %d, %Y")
     @time_killed = @time.strftime("%I:%M %p")
 
+    #Attack Information
+    @number_blows = "BLOWS"
+    @attack_length = "LENGTH_ATTACK" #in seconds
+    @sequence_last_blow = "LAST_BLOW" #need last blow that killed the victim
+
     #Assassin Information
     @body = get_facebook_data(@assassin, nil, @access_token)
     @assassin_full_name = @body["name"]
