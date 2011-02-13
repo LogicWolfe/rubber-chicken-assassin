@@ -167,44 +167,36 @@ class ObituariesController < ApplicationController
   # TODO: Fill in Access token and victim name from DB
   # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
   def show
-    require 'rest_client'
+    # require 'rest_client'
+    # 
+    #     # Put access token retrieved from iPhone here
+    #     @access_token = '2227470867|2.qkpH5zFq6VeINQny_eto6g__.3600.1297638000-120406278|dVh0SqhhaAP0EF8h1dposbABIEs'
+    # 
+    #     # Put victim's Facebook ID or vanity name here
+    #     @victim = 'tonytones'
+    # 
+    #     # Put assassin's name here
+    #     @assassin = '120408363'
+    # 
+    #     # Put long_lat string here
+    #     @long_lat = '53.523574,-113.524046'
+    #     # @long_lat = '1,1'
+    # 
+    #     #Attack Information
+    # 
+    #     #Assassin Information
+    #     @body = get_facebook_data(@assassin, nil, @access_token)
+    #     @assassin_full_name = @body["name"]
+    #     @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
+    # 
+    
+    @obituary = Obituary.find(params[:id])
 
-    # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.qkpH5zFq6VeINQny_eto6g__.3600.1297638000-120406278|dVh0SqhhaAP0EF8h1dposbABIEs'
 
-    # Put victim's Facebook ID or vanity name here
-    @victim = 'tonytones'
-
-    # Put assassin's name here
-    @assassin = '120408363'
-
-    # Put long_lat string here
-    @long_lat = '53.523574,-113.524046'
-    # @long_lat = '1,1'
-
-    #Time and Date
-    @time = Time.new
-    @full_date = @time.strftime("%B %d, %Y")
-    @time_killed = @time.strftime("%I:%M %p")
-
-    #Attack Information
-    @number_blows = "NUMBER_BLOWS"
-    @attack_length = "LENGTH_ATTACK" #in seconds
-    @sequence_last_blow = "LAST_BLOW" #need last blow that killed the victim
-
-    #Assassin Information
-    @body = get_facebook_data(@assassin, nil, @access_token)
-    @assassin_full_name = @body["name"]
-    @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
-
-    #Victim Information
-    @body = get_facebook_data(@victim, nil, @access_token)
-    @first_name = @body["first_name"]
-    @last_name = @body["last_name"]
-    if (@body["gender"] == "male")
+    if (@obituary.gender == "male")
       @he_she = "he";
       @his_her = "his";
-    elsif (@body["gender"] == "female")
+    elsif (@obituary.gender == "female")
       @he_she = "she";
       @his_her = "her";
     else #user did not specify gender.
@@ -212,54 +204,27 @@ class ObituariesController < ApplicationController
       @his_her = "its";
     end
 
-    @body = get_facebook_data(@victim, 'friends', @access_token)
-    @fb_friends_count = @body["data"].length
-
-    @body = get_facebook_data(@victim, 'movies', @access_token)
-    if (@body["data"][0] == nil)
-      @favorite_movie = FAV_MOVIE[rand(FAV_MOVIE.size)]  
-    else
-      @favorite_movie = @body["data"][0]["name"] 
-    end    
-
-    @body = get_facebook_data(@victim, 'music', @access_token)
-    if (@body["data"][0] == nil)
-      @favorite_band = FAV_BAND[rand(FAV_BAND.size)]  
-    else
-      @favorite_band = @body["data"][0]["name"] 
-    end   
+    @first_name = @obituary.first_name
+    @last_name = @obituary.last_name
     
-    @body = get_facebook_data(@victim, 'books', @access_token)
-    if (@body["data"][0] == nil)
-      @favorite_book = FAV_BOOK[rand(FAV_BOOK.size)]
-    else
-      @favorite_book = @body["data"][0]["name"] 
-    end
+    @full_date = @obituary.created_at.strftime("%B %d, %Y")
+    @time_killed = @obituary.created_at.strftime("%I:%M %p")
     
-    @body = get_facebook_data(@victim, 'events', @access_token)
-    if (@body["data"][0] == nil)
-      @recent_event = RECENT_EVENT[rand(RECENT_EVENT.size)]  
-    else
-      @recent_event = @body["data"][0]["name"] 
-    end
-
-    @body = get_facebook_data(@victim, 'feed', @access_token)
-    for i in 0..@body["data"].length
-      if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
-        @last_status_update = @body["data"][i]["message"]
-        break
-      end
-    end
-
-    # Location Data
-    @locations_list = get_locations(@long_lat, @access_token)
-    if (@locations_list["data"].length > 0)
-      @location = @locations_list["data"][0]["name"]
-    else
-      @location = "the scene of the crime"
-    end
-
-    @kill = Kill.first
+    @assassin_full_name = @obituary.assassin_full_name
+    @assassin_photo_url = @obituary.assassin_photo.process(:sepia).url
+    
+    @fb_friends_count = @obituary.fb_friends_count
+    @favorite_movie = @obituary.favorite_movie
+    @favorite_band = @obituary.favorite_band
+    @favorite_book = @obituary.favorite_book
+    @last_status_update = @obituary.last_status_update
+    
+    @number_blows = "NUMBER_BLOWS"
+    @attack_length = "LENGTH_ATTACK" #in seconds
+    @sequence_last_blow = "LAST_BLOW" #need last blow that killed the victim
+    @recent_event = "RECENT EVENT"
+    
+    @location = @obituary.location
 
     #for testing individual strings - make the entry you want to test the first in the array
     #@intro = INTRO.first

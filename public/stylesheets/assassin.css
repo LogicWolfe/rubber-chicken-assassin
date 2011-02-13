@@ -1184,9 +1184,10 @@ textarea {
 #obituaries-show {
   width: 750px;
   background-image: url(/images/old_paper.jpg);
+  margin: auto;
   min-height: 600px;
 }
-/* line 14, ../../app/stylesheets/obituaries.sass */
+/* line 15, ../../app/stylesheets/obituaries.sass */
 #obituaries-show h1 {
   margin-left: 100px;
   padding-top: 50px;
@@ -1195,7 +1196,7 @@ textarea {
   border-bottom: 3px double #666666;
   width: 550px;
 }
-/* line 22, ../../app/stylesheets/obituaries.sass */
+/* line 23, ../../app/stylesheets/obituaries.sass */
 #obituaries-show img.victim_photo {
   display: -moz-inline-box;
   -moz-box-orient: vertical;
@@ -1211,14 +1212,14 @@ textarea {
 #obituaries-show img.victim_photo {
   *display: inline;
 }
-/* line 29, ../../app/stylesheets/obituaries.sass */
+/* line 30, ../../app/stylesheets/obituaries.sass */
 #obituaries-show img.footer {
   margin-left: auto;
   margin-right: auto;
   display: block;
   padding-bottom: 30px;
 }
-/* line 34, ../../app/stylesheets/obituaries.sass */
+/* line 35, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p {
   margin-left: auto;
   margin-right: auto;
@@ -1227,18 +1228,18 @@ textarea {
   font-family: "MomsTypewriter";
   font-size: 16px;
 }
-/* line 42, ../../app/stylesheets/obituaries.sass */
+/* line 43, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p .name {
   float: left;
   font-weight: bold;
   width: 330px;
 }
 
-/* line 47, ../../app/stylesheets/obituaries.sass */
+/* line 48, ../../app/stylesheets/obituaries.sass */
 .assassin_photo {
   text-align: center;
 }
-/* line 49, ../../app/stylesheets/obituaries.sass */
+/* line 50, ../../app/stylesheets/obituaries.sass */
 .assassin_photo img {
-  border: 1px solid red;
+  border: 1px solid #666666;
 }
