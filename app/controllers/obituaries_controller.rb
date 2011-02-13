@@ -202,7 +202,7 @@ class ObituariesController < ApplicationController
 
     # Location Data
     @locations_list = get_locations(@long_lat, @access_token)
-    if (@locations_list["data"][0] != nil)
+    if (@locations_list["data"].length > 0)
       @location = @locations_list["data"][0]["name"]
     else
       @location = "the scene of the crime"
