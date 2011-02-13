@@ -95,11 +95,9 @@ class ObituariesController < ApplicationController
     return JSON.parse(response.body)
   end
 
-  # TODO: Randomize the [0] from [0..MAX_ITEMS_OF_TYPE] so that you don't get the same item every time, unless you want it
-  #       [0] is usually the latest "created_time"
-  # TODO: Get Assassin's full name
   # TODO: Get location from DB
   # TODO: Fill in Access token and victim name from DB
+  # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
   def show
     require 'rest_client'
 
@@ -107,7 +105,7 @@ class ObituariesController < ApplicationController
     @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
 
     # Put victim's Facebook ID or vanity name here
-    @victim = 'tonytones'
+    @victim = '120408363'
 
     # Put assassin's name here
     @assassin = '120408363'
@@ -160,7 +158,6 @@ class ObituariesController < ApplicationController
     #This may not be usable unless we post coordinates
     @location = "LOCATION"
 
-
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
     @leaving_behind = LEAVING_BEHIND.first
@@ -168,5 +165,15 @@ class ObituariesController < ApplicationController
     @final_words = FINAL_WORDS.first
     @assassin_section = ASSASSIN_SECTION.first
     @join_assassin = JOIN_ASSASSIN.first
+    
+    # Uncomment this to show random lines from each part
+    # @intro = INTRO[rand(INTRO.size)]
+    # @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
+    # @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
+    # @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
+    # @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
+    # @intro_to_assassin = INTRO_TO_ASSASSIN[rand(INTRO_TO_ASSASSIN.size)]
+    # @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
+    # @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
   end
 end
