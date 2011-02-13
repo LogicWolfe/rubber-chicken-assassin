@@ -1,4 +1,4 @@
-<%= form_for(@kill) do |f| %>
+<%= form_for(@kill, :html => {:multipart => true}) do |f| %>
   <% if @kill.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@kill.errors.count, "error") %> prohibited this kill from being saved:</h2>
@@ -23,9 +23,10 @@
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
+
   <div class="field">
-    <%= f.label :photo_uid %><br />
-    <%= f.text_field :photo_uid %>
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
   </div>
   <div class="field">
     <%= f.label :attack_sequence %><br />

@@ -1,0 +1,26 @@
+%p#notice=notice
+
+%p
+  %b Killer:
+  = @kill.killer_id
+
+%p
+  %b Victim:
+  = @kill.victim_id
+
+%p
+  %b Location:
+  = @kill.location 
+
+%p
+  %bPhoto:
+  %img{:src => @kill.photo.url} 
+
+%p
+  %b Attack sequence:
+  = @kill.attack_sequence
+
+
+= link_to 'Edit', edit_kill_path(@kill) 
+|
+= link_to 'Back', kills_path
