@@ -102,10 +102,10 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
+    @access_token = '2227470867|2.VYfHTTPAyT3k6SSzaOig_Q__.3600.1297634400-120406278|SycDKvfOnXzhZn7izZI__-cEAb0'
 
     # Put victim's Facebook ID or vanity name here
-    @victim = '120408363'
+    @victim = 'tonytones'
 
     # Put assassin's name here
     @assassin = '120408363'
