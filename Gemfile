@@ -30,7 +30,7 @@ gem 'memcache-client'
 gem 'nokogiri', '>=1.4.4'
 
 gem 'facebooker2'
-
+gem 'rest-client'
 gem 'pry'
 
 # Use unicorn as the web server
