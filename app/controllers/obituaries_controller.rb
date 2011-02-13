@@ -139,12 +139,10 @@ class ObituariesController < ApplicationController
     elsif (@body["gender"] == "female")
       @he_she = "she";
       @his_her = "her";
-    else #user did not specify gender. 
+    else #user did not specify gender.
       @he_she = "it";
       @his_her = "its";
     end
-
-    @victim_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
 
     @body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
@@ -170,7 +168,7 @@ class ObituariesController < ApplicationController
       end
     end
 
-    #reverse geosyncing is inaccurate. 
+    #reverse geosyncing is inaccurate.
     #This may not be usable unless we post coordinates
     @location = "LOCATION"
 
@@ -185,7 +183,7 @@ class ObituariesController < ApplicationController
     @join_assassin = JOIN_ASSASSIN.first
     @favorite_book = FAV_BOOK.first
     @favorite_movie = FAV_MOVIE.first
-    
+
     # Uncomment this to show random lines from each part
     # @intro = INTRO[rand(INTRO.size)]
     # @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]

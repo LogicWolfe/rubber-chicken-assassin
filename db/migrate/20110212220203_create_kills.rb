@@ -1,8 +1,8 @@
 class CreateKills < ActiveRecord::Migration
   def self.up
     create_table :kills do |t|
-      t.integer :killer_id
-      t.integer :victim_id
+      t.integer :killer_id, :limit => 8
+      t.integer :victim_id, :limit => 8
       t.string :location
       t.string :photo_uid
       t.string :attack_sequence
