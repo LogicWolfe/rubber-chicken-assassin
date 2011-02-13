@@ -86,8 +86,15 @@ class ObituariesController < ApplicationController
   def index
   end
 
-  # TODO: Refactor out all the RestClient get calls and change it so that you can pass in a param for the type of call
-  #       Returns a JSON hash
+  def get_facebook_data(victim, type, access_token)
+    if type == nil
+      response = RestClient.get "https://graph.facebook.com/#{victim}", :params => { :access_token => access_token }
+    else
+      response = RestClient.get "https://graph.facebook.com/#{victim}/#{type}", :params => { :access_token => access_token }
+    end
+    return JSON.parse(response.body)
+  end
+
   # TODO: Randomize the [0] from [0..MAX_ITEMS_OF_TYPE] so that you don't get the same item every time, unless you want it
   #       [0] is usually the latest "created_time"
   # TODO: Get Assassin's full name
@@ -97,38 +104,66 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
+<<<<<<< HEAD
     @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
+=======
+    @access_token = '2227470867|2.fG5_UFptDCqPVC9d_4o03g__.3600.1297627200-120406278|F9VhrETi1dHVKtb7UP3LT7I7jpE'
+>>>>>>> 4aef87fa4f6e1782d1d1ae3319cb871ca1be7852
 
     # Put victim's Facebook ID or vanity name here
     @victim = 'tonytones'
 
-    response = RestClient.get 'https://graph.facebook.com/' + @victim, :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+    # Put assassin's name here
+    @assassin = '120408363'
+
+    #Time and Date
+    @time = Time.new
+    @full_date = @time.strftime("%B %d, %Y")
+    @time_killed = @time.strftime("%I:%M %p")
+
+    #Assassin Information
+    @body = get_facebook_data(@assassin, nil, @access_token)
+    @assassin_full_name = @body["name"]
+    @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
+
+    #Victim Information
+    @body = get_facebook_data(@victim, nil, @access_token)
     @first_name = @body["first_name"]
     @last_name = @body["last_name"]
-    @full_date = Time.new.strftime("%B %d, %Y")
     if (@body["gender"] == "male")
       @he_she = "he";
       @his_her = "his";
-    else
+    elsif (@body["gender"] == "female")
       @he_she = "she";
       @his_her = "her";
+    else #user did not specify gender. 
+      @he_she = "it";
+      @his_her = "its";
     end
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/friends', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+
+    @victim_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
+
+    @body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/movies', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+
+    @body = get_facebook_data(@victim, 'movies', @access_token)
     @favorite_movie = @body["data"][0]["name"]
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/music', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
+
+    @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/feed', :params => { :access_token => @access_token }
-    @body = JSON.parse(response.body)
-    @last_status_update = @body["data"][0]["message"]
+
+    @body = get_facebook_data(@victim, 'feed', @access_token)
+    for i in 0..@body["data"].length
+      if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
+        @last_status_update = @body["data"][i]["message"]
+        break
+      end
+    end
+
+    #reverse geosyncing is inaccurate. 
+    #This may not be usable unless we post coordinates
     @location = "LOCATION"
-    @assassin_full_name = "ASSASSIN_FULL_NAME"
-    @assassin_photo_url = "https://graph.facebook.com/" + @victim + "/picture?type=large&access_token=" + @access_token
+
 
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
