@@ -54,28 +54,28 @@ class KillsController < ApplicationController
     @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
 
     @body = get_facebook_data(@kill.victim_id, 'movies', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0].length == 0)
       @favorite_movie = 'DEFAULT'
     else
       @favorite_movie = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'music', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0].length == 0)
       @favorite_band = 'DEFAULT'
     else
       @favorite_band = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'books', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0].length == 0)
       @favorite_book = 'DEFAULT'
     else
       @favorite_book = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kil.victim_id, 'events', @access_token)
-    if (@body["data"][0].length > 0)
+    if (@body["data"][0].length == 0)
       @recent_event = 'DEFAULT'
     else
       @recent_event = @body["data"][0]["name"]
@@ -91,7 +91,7 @@ class KillsController < ApplicationController
 
     # Location
     @locations_list = get_locations(@kill.location, @access_token)
-    if (@locations_list["data"].length > 0)
+    if (@locations_list["data"].length == 0)
       @location = @locations_list["data"][0]["name"]
     else
       @location = "the scene of the crime"
@@ -110,6 +110,7 @@ class KillsController < ApplicationController
       :favorite_movie => @favorite_movie,
       :favorite_band => @favorite_band,
       :favorite_book => @favorite_book,
+      :recent_event => @recent_event,
       :last_status_update => @last_status_update,
       :location => @location,
       :attack_sequence => @kill.attack_sequence
