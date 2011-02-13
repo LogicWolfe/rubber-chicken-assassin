@@ -91,7 +91,7 @@ class KillsController < ApplicationController
 
     # Location
     @locations_list = get_locations(@kill.location, @access_token)
-    if (@locations_list["data"].length > 0)
+    if (@locations_list["data"].length == 0)
       @location = @locations_list["data"][0]["name"]
     else
       @location = "the scene of the crime"
@@ -110,6 +110,7 @@ class KillsController < ApplicationController
       :favorite_movie => @favorite_movie,
       :favorite_band => @favorite_band,
       :favorite_book => @favorite_book,
+      :recent_event => @recent_event,
       :last_status_update => @last_status_update,
       :location => @location,
       :attack_sequence => @kill.attack_sequence
