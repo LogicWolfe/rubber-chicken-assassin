@@ -33,9 +33,10 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND2 = [
+    "an expansive collection of commemorative teaspoons, including a 6-piece collector set from <%=@recent_event%>.",
+    "a most beloved collection of <%=@favorite_band%> t-shirts.",
     "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>.",
     "an expansive collection of tea cozies.",
-    "a most beloved collection of <%=@favorite_band%> t-shirts.",
     "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>.",
     "was known for <%=@his_her%> mad, mad Chutes and Ladders skills.",
     "was known for a love of wasabi.",
@@ -72,15 +73,61 @@ class ObituariesController < ApplicationController
   ]
   
   FAV_BOOK = [
-    "Curious George Visits The Dentist"
+    "Curious George Visits The Proctologist",
+    "Zen and the Art of Bikini Waxing",
+    "The Dummies Guide to Making Love",
+    "Savage Passion",
+    "Truth, Dare, or Handcuffs",
+    "Songs of the Humpback Whale",
+    "I Wish I Knew How to Quit You",
+    "I Heart You, You Haunt Me",
+    "Are You There Vodka? It's Me Chelsea",
+    "The Stainless Steel Rat Saves the World",
+    "The Complete Idiot's Guide to Understanding Intelligent Design"
   ]
   
   FAV_MOVIE = [
-    "Attack of the 50' Woman"
+    "Attack of the 50' Woman",
+    "Garfield: The Movie",
+    "Bridges of Madison County",
+    "Conan the Barbarian",
+    "Police Academy 6",
+    "Macho Sluts",
+    "Spiderman 3",
+    "Howard the Duck",
+    "Mac and Me",
+    "Highlander 2: The Quickening",
+    "It's Pat",
+    "Showgirls",
+    "Battlefield Earth",
+    "Gigli",
+    "Catwoman",
+    "Son of the Mask"
   ]
   
   FAV_BAND = [
-    "Bananarama"
+    "Bananarama",
+    "Michael Bolton",
+    "Justin Bieber",
+    "The Backstreet Boys",
+    "David Hasselhoff",
+    "The Bacon Brothers",
+    "Blink 182",
+    "Creed",
+    "Nickelback",
+    "Limp Bizkit",
+    "The Insane Clown Posse",
+    "Bon Jovi",
+    "Genesis",
+    "Jonas Brothers"
+  ]
+  
+  RECENT_EVENT = [
+    "Michael Franti Plays At The Forum",
+    "Care Bears LIVE",
+    "Dinner at Aunt Shirley's",
+    "Smurfs On Ice",
+    "Betty's 34th Birthday"
   ]
 
   FINAL_WORDS = [
@@ -93,11 +140,11 @@ class ObituariesController < ApplicationController
   ]
 
   ASSASSIN_SECTION = [
-    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a worn and beaten rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
-    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a heavily-tattered rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
-    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a limp rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
-    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a deflated rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
-    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding an exhausted rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin, police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>"
+    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a worn and beaten rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin. Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
+    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a heavily-tattered rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin. Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
+    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a limp rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin. Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
+    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding a deflated rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin. Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>",
+    "Authorities are searching for the leading suspect who was last seen fleeing <%=@location%> holding an exhausted rubber chicken. Identified as one <%=@assassin_full_name%>, a known rubber-chicken assassin. Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>"
   ]
 
   JOIN_ASSASSIN = [
@@ -165,18 +212,31 @@ class ObituariesController < ApplicationController
     @fb_friends_count = @body["data"].length
 
     @body = get_facebook_data(@victim, 'movies', @access_token)
-    if (@favorite_movie != nil)
-      @favorite_movie = @body["data"][0]["name]"]  
+    if (@body["data"][0] == nil)
+      @favorite_movie = FAV_MOVIE.first  
+    else
+      @favorite_movie = @body["data"][0]["name"] 
     end    
 
     @body = get_facebook_data(@victim, 'music', @access_token)
-    if (@favorite_band != nil)
-      @favorite_band = @body["data"][0]["name]"]  
-    end
+    if (@body["data"][0] == nil)
+      @favorite_band = FAV_BAND.first  
+    else
+      @favorite_band = @body["data"][0]["name"] 
+    end   
     
     @body = get_facebook_data(@victim, 'books', @access_token)
-    if (@favorite_book != nil)
-      @favorite_book = @body["data"][0]["name]"]  
+    if (@body["data"][0] == nil)
+      @favorite_book = FAV_BOOK.first  
+    else
+      @favorite_book = @body["data"][0]["name"] 
+    end
+    
+    @body = get_facebook_data(@victim, 'events', @access_token)
+    if (@body["data"][0] == nil)
+      @recent_event = RECENT_EVENT.first  
+    else
+      @recent_event = @body["data"][0]["name"] 
     end
 
     @body = get_facebook_data(@victim, 'feed', @access_token)
@@ -193,25 +253,22 @@ class ObituariesController < ApplicationController
 
     @kill = Kill.first
 
-    @intro = INTRO.first
-    @death_desc = DEATH_DESC.first
-    @leaving_behind = LEAVING_BEHIND.first
-    @leaving_behind2 = LEAVING_BEHIND2.first
-    @final_words = FINAL_WORDS.first
-    @assassin_section = ASSASSIN_SECTION.first
-    @join_assassin = JOIN_ASSASSIN.first
-    @favorite_book = FAV_BOOK.first
-    @favorite_movie = FAV_MOVIE.first
-    @favorite_band = FAV_BAND.first
+    #for testing individual strings - make the entry you want to test the first in the array
+    #@intro = INTRO.first
+    #@death_desc = DEATH_DESC.first
+    #@leaving_behind = LEAVING_BEHIND.first
+    #@leaving_behind2 = LEAVING_BEHIND2.first
+    #@final_words = FINAL_WORDS.first
+    #@assassin_section = ASSASSIN_SECTION.first
+    #@join_assassin = JOIN_ASSASSIN.first
 
     # Uncomment this to show random lines from each part
-    # @intro = INTRO[rand(INTRO.size)]
-    # @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
-    # @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
-    # @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
-    # @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
-    # @intro_to_assassin = INTRO_TO_ASSASSIN[rand(INTRO_TO_ASSASSIN.size)]
-    # @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
-    # @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
+    @intro = INTRO[rand(INTRO.size)]
+    @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
+    @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
+    @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
+    @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
+    @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
+    @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
   end
 end
