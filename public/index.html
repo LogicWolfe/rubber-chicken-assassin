@@ -1,240 +1,189 @@
 <!DOCTYPE html>
 <html>
-	<p>Hello world!</p>
-  <!--<head>
-    <title>Ruby on Rails: Welcome aboard</title>
+  <head>
+    <title>Rubber Chicken Assassin</title>
     <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
-
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
-
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
-
-
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
-
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
-
-      #footer {
-        clear: both;
-      }
-
-
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
-
-
-      #header {
-        background-image: url("images/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-
-    </style>
-    <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
-    </script>
+    	ul {
+    		-webkit-padding-start: 0px;
+    	}
+    	body {
+    		background: #0181b1;
+    		margin: 0px;
+    	}
+    	#container {
+    		width: 840px;
+    		padding: 40px;
+    		height: auto;
+    		margin-left: auto;
+    		margin-right: auto;
+    		margin-top: 40px;
+    		background: #fbfbfb;
+    		-webkit-border-radius: 25px;
+			-moz-border-radius: 25px;
+			border-radius: 25px;
+    	}
+    	//#header {
+    		height: 40px;
+    		background: #fbfbfb;
+    		margin-bottom: 40px;
+    		-webkit-border-bottom-left-radius: 25px;
+    		-webkit-border-bottom-right-radius: 25px;
+    		-moz-border-radius-bottomleft: 25px;
+    		-moz-border-radius-bottomright: 25px;
+    		border-bottom-left-radius: 25px;
+    		border-bottom-right-radius: 25px;
+    	}
+    	#splash {
+    		margin-top: 10px;
+    		//margin-bottom: 30px;
+    		height: 670px;
+    		width: auto;
+    		//background: yellow;
+    	}
+    	#splash-img {
+    		width: 460px;
+    		height: 220px;
+    		float: left;
+    		background: url('images/splash-text.png')no-repeat;
+    		margin-bottom: 0px;
+    		margin-top: 10px;
+    	}
+    	#splash-text {
+    		clear: left;
+    		float: left;
+    		width: 480px;
+    	}
+    	blockquote {
+    		margin-left: 0px;
+    		width: 400px;
+    		height: auto;
+    		color: #fbfbfb;
+    		font-size: 12px;
+    		font-family: Verdana;
+    		font-weight: lighter;
+    		background: #0181b1;
+    		-webkit-border-radius: 25px;
+			-moz-border-radius: 25px;
+			border-radius: 25px;
+    		padding: 40px;
+    		font-style: italic;
+    	}
+    	#splash-text h1,h2,h3 {
+    		text-transform: uppercase;
+    	}
+    	#splash-text h2 {
+    		font-size: 14px;
+    	}
+    	#iphone {
+    		background: url('images/iphone.png')no-repeat;
+    		width: 336px;
+    		height: 630px;
+    		float: right;
+    		//margin-top: -200px;
+    		//margin-right: 100px;
+    	}
+    	#content {
+    		clear: both;
+    		//background: #0181b1;
+    		color: white;
+    		font-size: 16px;
+    		font-family: Verdana;
+    		//width: auto;
+    		height: 380px;
+    		//padding: 40px;
+    		//-webkit-border-radius: 25px;
+			//-moz-border-radius: 25px;
+			//border-radius: 25px;
+    	}
+    	#column-left, #column-middle, #column-right {
+    		padding: 40px;
+    		width: 180px;
+    		height: 300px;
+    		background: #4eb7f5;
+    		-webkit-border-radius: 25px;
+			-moz-border-radius: 25px;
+			border-radius: 25px;
+			float: left;
+    	}
+    	#column-left {
+    		margin-right: 25px;
+    	}
+    	#column-middle {
+    		margin-right: 25px;
+    	}
+    	#splash ul {
+    		list-style: none;
+    		float: left;
+    	}
+    	#splash ul li {
+    		float: left;
+    		padding: 10px;
+    		width: 210px;
+    		height: 28px;
+    		background: #0181b1;
+    		-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+    	}
+    	#splash ul li a {
+    		text-decoration: none;
+    		color: white;
+    		font-size: 20px;
+    		font-family: Verdana;
+    		margin-left: 8px;
+    	}
+    	#splash ul li:hover {
+    		background: #333333;
+    	}
+    	.itunes {
+    		margin-right: 20px;
+    	}
+	</style>
   </head>
   <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://stdlib.rubyonrails.org/">Ruby standard library</a></li>
-              <li><a href="http://corelib.rubyonrails.org/">Ruby core</a></li>
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div id="content">
+      <div id="container">
         <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+        </div>
+        <div id="splash">
+        	<div id="iphone"></div>
+        	<div id="splash-img"></div>
+        	<div id="splash-text">
+        	<blockquote><h2>From a satisfied rubber chicken user:</h2>
+        	<p>"Rubber Chicken Assassins changed my life.  Like seriously.  Up until I had this app on my phone life was just a monotonous chore that had to be endured without rubber chickens.  Now that I have this app I can slap my friends with it without actually causing any physical harm!  Amazing!</p>
+        	<p>My sex life has really improved too!  I met this girl on Myspace.  She's really pretty and has tons of friends so she's gotta be famous.  Apparently she's a super model too!  Soooooo stoked to meet her.  Thanks Rubber Chicken Assassins!"</p>
+        	<p>-Lonelyboy516</p>
+        	</blockquote>
+        	<ul>
+        	<li class="button itunes"><a href="">I gotta get me this!</a></li>
+        	<li class="button facebook"><a style="margin-left: 26px;" href="">I gotta fan this!</a></li>
+        	</ul>
+        	</div>
+		</div>
+		
+        <div id="content">
+        	<div id="column-left">
+        		<h2>Durpa Dur</h2>
+        		<hr />
+        		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+        	</div>
+        	
+        	<div id="column-middle">
+        		<h2>Durpa Dur</h2>
+        		<hr />
+        		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+        	</div>
+        	
+        	
+        	<div id="column-right">
+        		<h2>Durpa Dur</h2>
+        		<hr />
+        		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+        	</div>
         </div>
 
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
-
-          <ol>
-            <li>
-              <h2>Use <code>rails generate</code> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-
-            <li>
-              <h2>Set up a default route and remove or rename this file</h2>
-              <p>Routes are set up in config/routes.rb.</p>
-            </li>
-
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <code>rake db:migrate</code> to create your database. If you're not using SQLite (the default), edit <code>config/database.yml</code> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
       </div>
 
       <div id="footer">&nbsp;</div>
     </div>
-  </body>-->
+  </body>
 </html>
