@@ -73,12 +73,22 @@ class ObituariesController < ApplicationController
     @victim = 'tonytones'
 
     # Put assassin's name here
-    @assassin = 'FILL_THIS_IN'
+    @assassin = '120408363'
 
-    @body = get_facebook_data(@victim, nil, @access_token)
+	#Time and Date
+	@time = Time.new
+    @full_date = @time.strftime("%B %d, %Y")
+    @time_killed = @time.strftime("%I:%M %p")
+	
+	#Assassin Information
+	@body = get_facebook_data(@assassin, nil, @access_token)
+    @assassin_full_name = @body["name"]
+    @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
+	
+	#Victim Information
+	@body = get_facebook_data(@victim, nil, @access_token)
     @first_name = @body["first_name"]
     @last_name = @body["last_name"]
-    @full_date = Time.new.strftime("%B %d, %Y")
     if (@body["gender"] == "male")
       @he_she = "he";
       @his_her = "his";
@@ -89,15 +99,19 @@ class ObituariesController < ApplicationController
       @he_she = "it";
       @his_her = "its";
     end
-    @body = get_facebook_data(@victim, 'friends', @access_token)
+    
+    @victim_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
+
+	@body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
-    @body = get_facebook_data(@victim, 'movies', @access_token)
+    
+	@body = get_facebook_data(@victim, 'movies', @access_token)
     @favorite_movie = @body["data"][0]["name"]
-    @body = get_facebook_data(@victim, 'music', @access_token)
+    
+	@body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
-    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/feed', :params => { :fields => 'to,from,message', :access_token => @access_token }
-    @body = JSON.parse(response.body)
-	
+    
+	@body = get_facebook_data(@victim, 'feed', @access_token)
 	for i in 0..@body["data"].length
 		if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
 			@last_status_update = @body["data"][i]["message"]
@@ -105,10 +119,10 @@ class ObituariesController < ApplicationController
 		end
 	end
 
-	#reverse geosyncing is inaccurate. This may not be usable unless we post coordinates
+	#reverse geosyncing is inaccurate. 
+	#This may not be usable unless we post coordinates
     @location = "LOCATION"
-    @assassin_full_name = @assassin
-    @assassin_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
+	
 
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
