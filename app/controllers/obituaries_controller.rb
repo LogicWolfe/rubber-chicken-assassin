@@ -158,6 +158,8 @@ class ObituariesController < ApplicationController
     #This may not be usable unless we post coordinates
     @location = "LOCATION"
 
+    @kill = Kill.first
+
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
     @leaving_behind = LEAVING_BEHIND.first

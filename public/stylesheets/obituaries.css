@@ -21,6 +21,30 @@
   min-height: 600px;
 }
 /* line 14, ../../app/stylesheets/obituaries.sass */
+#obituaries-show h1 {
+  margin-left: 100px;
+  padding-top: 50px;
+  margin-bottom: 0px;
+  font-family: "Harting";
+  border-bottom: 3px double #666666;
+  width: 550px;
+}
+/* line 22, ../../app/stylesheets/obituaries.sass */
+#obituaries-show img.victim_photo {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  margin-right: 12px;
+  margin-bottom: 8px;
+  margin-top: 4px;
+}
+/* line 7, ../../../../../../usr/local/rvm/gems/ruby-1.9.2-p136/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#obituaries-show img.victim_photo {
+  *display: inline;
+}
+/* line 27, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p {
   margin-left: auto;
   margin-right: auto;
@@ -29,18 +53,18 @@
   font-family: "MomsTypewriter";
   font-size: 16px;
 }
-/* line 22, ../../app/stylesheets/obituaries.sass */
+/* line 35, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p .name {
   float: left;
   font-weight: bold;
   width: 330px;
 }
 
-/* line 27, ../../app/stylesheets/obituaries.sass */
+/* line 40, ../../app/stylesheets/obituaries.sass */
 .assassin_photo {
   text-align: center;
 }
-/* line 29, ../../app/stylesheets/obituaries.sass */
+/* line 42, ../../app/stylesheets/obituaries.sass */
 .assassin_photo img {
   border: 1px solid red;
 }

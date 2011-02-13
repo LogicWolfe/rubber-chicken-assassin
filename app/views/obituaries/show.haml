@@ -1,6 +1,8 @@
 #obituaries-show
+  %h1
+    OBITUARY
   %p.obit
-    %img{:src => @kill.photo.url}
+    %img.victim_photo{:src => @kill.photo.thumb('300x').process(:sepia).url, :align => 'left'}
     =render :inline => @intro
     =render :inline => @death_desc
     =render :inline => @leaving_behind
