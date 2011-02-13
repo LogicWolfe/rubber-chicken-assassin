@@ -24,8 +24,10 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND2 = [
+    "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>.",
+    "an expansive collection of tea cozies.",
+    "a most beloved collection of <%=@favorite_band%> t-shirts.",
     "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>.",
-    "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>",
     "was known for <%=@his_her%> mad, mad Chutes and Ladders skills.",
     "was known for a love of wasabi.",
     "was known for a love of mustard packets.",
@@ -61,11 +63,15 @@ class ObituariesController < ApplicationController
   ]
   
   FAV_BOOK = [
-    "Curious George Visits The Dentist."
+    "Curious George Visits The Dentist"
   ]
   
   FAV_MOVIE = [
     "Attack of the 50' Woman"
+  ]
+  
+  FAV_BAND = [
+    "Bananarama"
   ]
 
   FINAL_WORDS = [
@@ -153,7 +159,9 @@ class ObituariesController < ApplicationController
     end    
 
     @body = get_facebook_data(@victim, 'music', @access_token)
-    @favorite_band = @body["data"][0]["name"]
+    if (@favorite_band != nil)
+      @favorite_band = @body["data"][0]["name]"]  
+    end
     
     @body = get_facebook_data(@victim, 'books', @access_token)
     if (@favorite_book != nil)
@@ -183,6 +191,7 @@ class ObituariesController < ApplicationController
     @join_assassin = JOIN_ASSASSIN.first
     @favorite_book = FAV_BOOK.first
     @favorite_movie = FAV_MOVIE.first
+    @favorite_band = FAV_BAND.first
 
     # Uncomment this to show random lines from each part
     # @intro = INTRO[rand(INTRO.size)]
