@@ -1,4 +1,6 @@
 class KillsController < ApplicationController
+  protect_from_forgery :except => :create
+  
   # GET /kills
   # GET /kills.xml
   def index
