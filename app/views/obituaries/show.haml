@@ -1,5 +1,6 @@
 #obituaries-show
   %p.obit
+    %img{:src => @kill.photo.url}
     =render :inline => @intro
     =render :inline => @death_desc
     =render :inline => @leaving_behind

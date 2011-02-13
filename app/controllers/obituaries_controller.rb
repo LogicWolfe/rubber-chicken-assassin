@@ -38,8 +38,8 @@ class ObituariesController < ApplicationController
 
   ASSASSIN_SECTION = [
     "The leading suspect was last seen fleeing <%=@location%> with a rubber chicken and has been identified as
-     one <%=@assassin_full_name%>, a known rubber-chicken assassin with a reputed <%=@kill_count%>
-     assassinations to his name.  Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>"
+    one <%=@assassin_full_name%>, a known rubber-chicken assassin with a reputed <%=@kill_count%>
+    assassinations to his name.  Police have released the following photo: <div class=\"assassin_photo\"><img src='<%=@assassin_photo_url%>'/></div>"
   ]
 
   JOIN_ASSASSIN = [
@@ -75,54 +75,54 @@ class ObituariesController < ApplicationController
     # Put assassin's name here
     @assassin = '120408363'
 
-	#Time and Date
-	@time = Time.new
+    #Time and Date
+    @time = Time.new
     @full_date = @time.strftime("%B %d, %Y")
     @time_killed = @time.strftime("%I:%M %p")
-	
-	#Assassin Information
-	@body = get_facebook_data(@assassin, nil, @access_token)
+
+    #Assassin Information
+    @body = get_facebook_data(@assassin, nil, @access_token)
     @assassin_full_name = @body["name"]
     @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
-	
-	#Victim Information
-	@body = get_facebook_data(@victim, nil, @access_token)
+
+    #Victim Information
+    @body = get_facebook_data(@victim, nil, @access_token)
     @first_name = @body["first_name"]
     @last_name = @body["last_name"]
     if (@body["gender"] == "male")
       @he_she = "he";
       @his_her = "his";
-	elsif (@body["gender"] == "female")
-	  @he_she = "she";
-	  @his_her = "her";
+    elsif (@body["gender"] == "female")
+      @he_she = "she";
+      @his_her = "her";
     else #user did not specify gender. 
       @he_she = "it";
       @his_her = "its";
     end
-    
+
     @victim_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
 
-	@body = get_facebook_data(@victim, 'friends', @access_token)
+    @body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
-    
-	@body = get_facebook_data(@victim, 'movies', @access_token)
-    @favorite_movie = @body["data"][0]["name"]
-    
-	@body = get_facebook_data(@victim, 'music', @access_token)
-    @favorite_band = @body["data"][0]["name"]
-    
-	@body = get_facebook_data(@victim, 'feed', @access_token)
-	for i in 0..@body["data"].length
-		if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
-			@last_status_update = @body["data"][i]["message"]
-			break
-		end
-	end
 
-	#reverse geosyncing is inaccurate. 
-	#This may not be usable unless we post coordinates
+    @body = get_facebook_data(@victim, 'movies', @access_token)
+    @favorite_movie = @body["data"][0]["name"]
+
+    @body = get_facebook_data(@victim, 'music', @access_token)
+    @favorite_band = @body["data"][0]["name"]
+
+    @body = get_facebook_data(@victim, 'feed', @access_token)
+    for i in 0..@body["data"].length
+      if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
+        @last_status_update = @body["data"][i]["message"]
+        break
+      end
+    end
+
+    #reverse geosyncing is inaccurate. 
+    #This may not be usable unless we post coordinates
     @location = "LOCATION"
-	
+
 
     @intro = INTRO.first
     @death_desc = DEATH_DESC.first
