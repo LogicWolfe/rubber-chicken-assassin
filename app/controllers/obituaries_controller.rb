@@ -82,9 +82,12 @@ class ObituariesController < ApplicationController
     if (@body["gender"] == "male")
       @he_she = "he";
       @his_her = "his";
-    else
-      @he_she = "she";
-      @his_her = "her";
+	elsif (@body["gender"] == "female")
+	  @he_she = "she";
+	  @his_her = "her";
+    else #user did not specify gender. 
+      @he_she = "it";
+      @his_her = "its";
     end
     @body = get_facebook_data(@victim, 'friends', @access_token)
     @fb_friends_count = @body["data"].length
@@ -92,8 +95,17 @@ class ObituariesController < ApplicationController
     @favorite_movie = @body["data"][0]["name"]
     @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
-    @body = get_facebook_data(@victim, 'feed', @access_token)
-    @last_status_update = @body["data"][0]["message"]
+    response = RestClient.get 'https://graph.facebook.com/' + @victim + '/feed', :params => { :fields => 'to,from,message', :access_token => @access_token }
+    @body = JSON.parse(response.body)
+	
+	for i in 0..@body["data"].length
+		if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@first_name + " " + @last_name)))
+			@last_status_update = @body["data"][i]["message"]
+			break
+		end
+	end
+
+	#reverse geosyncing is inaccurate. This may not be usable unless we post coordinates
     @location = "LOCATION"
     @assassin_full_name = @assassin
     @assassin_photo_url = "https://graph.facebook.com/#{@victim}/picture?type=large&access_token=#{@access_token}"
