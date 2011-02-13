@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(:version => 20110213204524) do
 
   create_table "kills", :force => true do |t|
-    t.integer  "killer_id",       :limit => 8
-    t.integer  "victim_id",       :limit => 8
+    t.integer  "killer_id"
+    t.integer  "victim_id"
     t.string   "location"
     t.string   "photo_uid"
     t.string   "attack_sequence"
