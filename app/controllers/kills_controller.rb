@@ -112,8 +112,7 @@ class KillsController < ApplicationController
       :favorite_book => @favorite_book,
       :recent_event => @recent_event,
       :last_status_update => @last_status_update,
-      :location => @location,
-      :attack_sequence => @kill.attack_sequence
+      :location => @location
     )
 
     if @kill.save
