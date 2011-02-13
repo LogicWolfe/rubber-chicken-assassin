@@ -24,6 +24,7 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND2 = [
+    "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>",
     "was known for <%=@his_her%> mad, mad Chutes and Ladders skills.",
     "was known for a love of wasabi.",
     "was known for a love of mustard packets.",
@@ -57,6 +58,10 @@ class ObituariesController < ApplicationController
     "several squirrels who live in a tree outside <%=@his_her%> home.",
     "7 cats.",
     "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>."
+  ]
+  
+  FAV_BOOK = [
+    "Curious George Visits The Dentist."
   ]
 
   FINAL_WORDS = [
@@ -102,10 +107,10 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
+    @access_token = '2227470867|2.VYfHTTPAyT3k6SSzaOig_Q__.3600.1297634400-120406278|SycDKvfOnXzhZn7izZI__-cEAb0'
 
     # Put victim's Facebook ID or vanity name here
-    @victim = '120408363'
+    @victim = 'tonytones'
 
     # Put assassin's name here
     @assassin = '120408363'
@@ -142,9 +147,17 @@ class ObituariesController < ApplicationController
 
     @body = get_facebook_data(@victim, 'movies', @access_token)
     @favorite_movie = @body["data"][0]["name"]
+    
 
     @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
+    
+    @body = get_facebook_data(@victim, 'books', @access_token)
+    if (@favorite_book == nil)
+      @favorite_book = FAV_BOOK.first
+    else
+      @favorite_book = @body["data"][0]["name]"]  
+    end
 
     @body = get_facebook_data(@victim, 'feed', @access_token)
     for i in 0..@body["data"].length
