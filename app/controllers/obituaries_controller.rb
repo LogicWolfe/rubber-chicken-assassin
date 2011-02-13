@@ -61,15 +61,15 @@ class ObituariesController < ApplicationController
     "several squirrels who live in a tree outside <%=@his_her%> home.",
     "7 cats."
   ]
-  
+
   FAV_BOOK = [
     "Curious George Visits The Dentist"
   ]
-  
+
   FAV_MOVIE = [
     "Attack of the 50' Woman"
   ]
-  
+
   FAV_BAND = [
     "Bananarama"
   ]
@@ -110,20 +110,33 @@ class ObituariesController < ApplicationController
     return JSON.parse(response.body)
   end
 
-  # TODO: Get location from DB
+  def get_locations(long_lat, access_token)
+    response = RestClient.get "https://graph.facebook.com/search", :params => {
+      :type => "place",
+      :center => long_lat,
+      :distance => "1000",
+      :access_token => access_token
+    }
+    return JSON.parse(response.body)
+  end
+
   # TODO: Fill in Access token and victim name from DB
   # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
   def show
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
+    @access_token = '2227470867|2.qkpH5zFq6VeINQny_eto6g__.3600.1297638000-120406278|dVh0SqhhaAP0EF8h1dposbABIEs'
 
     # Put victim's Facebook ID or vanity name here
-    @victim = 'logicwolfe'
+    @victim = 'tonytones'
 
     # Put assassin's name here
     @assassin = '120408363'
+
+    # Put long_lat string here
+    @long_lat = '53.523574,-113.524046'
+    # @long_lat = '1,1'
 
     #Time and Date
     @time = Time.new
@@ -160,17 +173,17 @@ class ObituariesController < ApplicationController
 
     @body = get_facebook_data(@victim, 'movies', @access_token)
     if (@favorite_movie != nil)
-      @favorite_movie = @body["data"][0]["name]"]  
-    end    
+      @favorite_movie = @body["data"][0]["name"]
+    end
 
     @body = get_facebook_data(@victim, 'music', @access_token)
     if (@favorite_band != nil)
-      @favorite_band = @body["data"][0]["name]"]  
+      @favorite_band = @body["data"][0]["name"]
     end
-    
+
     @body = get_facebook_data(@victim, 'books', @access_token)
     if (@favorite_book != nil)
-      @favorite_book = @body["data"][0]["name]"]  
+      @favorite_book = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@victim, 'feed', @access_token)
@@ -181,9 +194,13 @@ class ObituariesController < ApplicationController
       end
     end
 
-    #reverse geosyncing is inaccurate.
-    #This may not be usable unless we post coordinates
-    @location = "LOCATION"
+    # Location Data
+    @locations_list = get_locations(@long_lat, @access_token)
+    if (@locations_list["data"][0] != nil)
+      @location = @locations_list["data"][0]["name"]
+    else
+      @location = "the scene of the crime"
+    end
 
     @kill = Kill.first
 
