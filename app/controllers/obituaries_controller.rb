@@ -1,13 +1,13 @@
 class ObituariesController < ApplicationController
   INTRO = [
-		"Embracing our spirituality we celebrate the life of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"Together we mourn the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"With moderate regret we inform you of the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"With marginal regret we announce the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"With not as much sadness as we expected we announce the passing of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"We most insincerely announce the departure of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"We most sincerely announce the departure of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-		"With deepest regrets we inform you about the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "Embracing our spirituality we celebrate the life of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "Together we mourn the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "With moderate regret we inform you of the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "With marginal regret we announce the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "With not as much sadness as we expected we announce the passing of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "We most insincerely announce the departure of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "We most sincerely announce the departure of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    "With deepest regrets we inform you about the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
     "We regret to announce the sudden passing of <%=@first_name%> <%=@last_name%> on <%=@full_date%>."
   ]
 
