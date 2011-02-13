@@ -24,6 +24,7 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND2 = [
+    "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>.",
     "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>",
     "was known for <%=@his_her%> mad, mad Chutes and Ladders skills.",
     "was known for a love of wasabi.",
@@ -56,12 +57,15 @@ class ObituariesController < ApplicationController
     "<%=@his_her%> favourite goldfish.",
     "an extensive porn collection.",
     "several squirrels who live in a tree outside <%=@his_her%> home.",
-    "7 cats.",
-    "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>."
+    "7 cats."
   ]
   
   FAV_BOOK = [
     "Curious George Visits The Dentist."
+  ]
+  
+  FAV_MOVIE = [
+    "Attack of the 50' Woman"
   ]
 
   FINAL_WORDS = [
@@ -107,10 +111,10 @@ class ObituariesController < ApplicationController
     require 'rest_client'
 
     # Put access token retrieved from iPhone here
-    @access_token = '2227470867|2.VYfHTTPAyT3k6SSzaOig_Q__.3600.1297634400-120406278|SycDKvfOnXzhZn7izZI__-cEAb0'
+    @access_token = '2227470867|2.k8m9P5zT7az2PcNEcAdXeQ__.3600.1297630800-511852582|MBT1pJ-C76QB5_oLSw3iWnZW3JE'
 
     # Put victim's Facebook ID or vanity name here
-    @victim = 'tonytones'
+    @victim = 'logicwolfe'
 
     # Put assassin's name here
     @assassin = '120408363'
@@ -146,16 +150,15 @@ class ObituariesController < ApplicationController
     @fb_friends_count = @body["data"].length
 
     @body = get_facebook_data(@victim, 'movies', @access_token)
-    @favorite_movie = @body["data"][0]["name"]
-    
+    if (@favorite_movie != nil)
+      @favorite_movie = @body["data"][0]["name]"]  
+    end    
 
     @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
     
     @body = get_facebook_data(@victim, 'books', @access_token)
-    if (@favorite_book == nil)
-      @favorite_book = FAV_BOOK.first
-    else
+    if (@favorite_book != nil)
       @favorite_book = @body["data"][0]["name]"]  
     end
 
@@ -180,6 +183,8 @@ class ObituariesController < ApplicationController
     @final_words = FINAL_WORDS.first
     @assassin_section = ASSASSIN_SECTION.first
     @join_assassin = JOIN_ASSASSIN.first
+    @favorite_book = FAV_BOOK.first
+    @favorite_movie = FAV_MOVIE.first
     
     # Uncomment this to show random lines from each part
     # @intro = INTRO[rand(INTRO.size)]
