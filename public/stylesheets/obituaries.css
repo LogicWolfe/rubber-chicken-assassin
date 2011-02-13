@@ -39,12 +39,20 @@
   margin-right: 12px;
   margin-bottom: 8px;
   margin-top: 4px;
+  border: 1px solid #666666;
 }
 /* line 7, ../../../../../../usr/local/rvm/gems/ruby-1.9.2-p136/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 #obituaries-show img.victim_photo {
   *display: inline;
 }
-/* line 27, ../../app/stylesheets/obituaries.sass */
+/* line 29, ../../app/stylesheets/obituaries.sass */
+#obituaries-show img.footer {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-bottom: 30px;
+}
+/* line 34, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p {
   margin-left: auto;
   margin-right: auto;
@@ -53,18 +61,18 @@
   font-family: "MomsTypewriter";
   font-size: 16px;
 }
-/* line 35, ../../app/stylesheets/obituaries.sass */
+/* line 42, ../../app/stylesheets/obituaries.sass */
 #obituaries-show p .name {
   float: left;
   font-weight: bold;
   width: 330px;
 }
 
-/* line 40, ../../app/stylesheets/obituaries.sass */
+/* line 47, ../../app/stylesheets/obituaries.sass */
 .assassin_photo {
   text-align: center;
 }
-/* line 42, ../../app/stylesheets/obituaries.sass */
+/* line 49, ../../app/stylesheets/obituaries.sass */
 .assassin_photo img {
   border: 1px solid red;
 }
