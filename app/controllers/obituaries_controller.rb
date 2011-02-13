@@ -101,15 +101,6 @@ class ObituariesController < ApplicationController
   def index
   end
 
-  def get_facebook_data(victim, type, access_token)
-    if type == nil
-      response = RestClient.get "https://graph.facebook.com/#{victim}", :params => { :access_token => access_token }
-    else
-      response = RestClient.get "https://graph.facebook.com/#{victim}/#{type}", :params => { :access_token => access_token }
-    end
-    return JSON.parse(response.body)
-  end
-
   # TODO: Get location from DB
   # TODO: Fill in Access token and victim name from DB
   # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
