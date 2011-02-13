@@ -24,6 +24,7 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND2 = [
+    "an extensive bookshelf of literature including a signed copy of <%=@favorite_book%>",
     "was known for <%=@his_her%> mad, mad Chutes and Ladders skills.",
     "was known for a love of wasabi.",
     "was known for a love of mustard packets.",
@@ -57,6 +58,10 @@ class ObituariesController < ApplicationController
     "several squirrels who live in a tree outside <%=@his_her%> home.",
     "7 cats.",
     "an extensive DVD collection featuring a rare collector's edition of <%=@favorite_movie%>."
+  ]
+  
+  FAV_BOOK = [
+    "Curious George Visits The Dentist."
   ]
 
   FINAL_WORDS = [
@@ -144,9 +149,17 @@ class ObituariesController < ApplicationController
 
     @body = get_facebook_data(@victim, 'movies', @access_token)
     @favorite_movie = @body["data"][0]["name"]
+    
 
     @body = get_facebook_data(@victim, 'music', @access_token)
     @favorite_band = @body["data"][0]["name"]
+    
+    @body = get_facebook_data(@victim, 'books', @access_token)
+    if (@favorite_book == nil)
+      @favorite_book = FAV_BOOK.first
+    else
+      @favorite_book = @body["data"][0]["name]"]  
+    end
 
     @body = get_facebook_data(@victim, 'feed', @access_token)
     for i in 0..@body["data"].length
