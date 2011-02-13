@@ -167,31 +167,7 @@ class ObituariesController < ApplicationController
   # TODO: Fill in Access token and victim name from DB
   # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
   def show
-    # require 'rest_client'
-    # 
-    #     # Put access token retrieved from iPhone here
-    #     @access_token = '2227470867|2.qkpH5zFq6VeINQny_eto6g__.3600.1297638000-120406278|dVh0SqhhaAP0EF8h1dposbABIEs'
-    # 
-    #     # Put victim's Facebook ID or vanity name here
-    #     @victim = 'tonytones'
-    # 
-    #     # Put assassin's name here
-    #     @assassin = '120408363'
-    # 
-    #     # Put long_lat string here
-    #     @long_lat = '53.523574,-113.524046'
-    #     # @long_lat = '1,1'
-    # 
-    #     #Attack Information
-    # 
-    #     #Assassin Information
-    #     @body = get_facebook_data(@assassin, nil, @access_token)
-    #     @assassin_full_name = @body["name"]
-    #     @assassin_photo_url = "https://graph.facebook.com/#{@assassin}/picture?type=large&access_token=#{@access_token}"
-    # 
-    
     @obituary = Obituary.find(params[:id])
-
 
     if (@obituary.gender == "male")
       @he_she = "he";
