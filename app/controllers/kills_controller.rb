@@ -140,12 +140,15 @@ class KillsController < ApplicationController
 
     if @kill.save
       begin
+        
+        At [time of kill] [name of victim] was taken out with a [type of finishing blow] strike from a rubber chicken.  Read the victim’s full obituary.
+        
         response = RestClient.post "https://graph.facebook.com/#{@kill.victim_id}/feed", :params => {
           :access_token => @access_token,
           :link => obituary_url(@kill.obituary),
           :picture => @kill.photo.thumb('75x75#').process(:sepia).url,
-          :name => "Article Title",
-          :description => "This is a longer description."
+          :name => "#{@obituary.first_name} was just assassinated by rubber chicken!",
+          :description => "#{@obituary.first_name} was bludgeoned to death by a rubber chicken.  Read the victim’s full obituary."
         }
       rescue
       end
