@@ -13,6 +13,7 @@ class ObituariesController < ApplicationController
 
   DEATH_DESC = [
     "<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.",
+    "<%=@first_name%> passed away after a <%=@attack_length%> second battle with a rubber-chicken wielding assassin.",
     "<%=@first_name%> was tragically assassinated; an autopsy has revelaed that a deadly <%=@sequence_last_blow%> blow from a rubber cheicken was the cause of death.",
     "<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.",
     "<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.",
@@ -20,7 +21,6 @@ class ObituariesController < ApplicationController
     "<%=@first_name%> was bludgeoned to death from <%=@number_blows%> blows to the head delivered via rubber chicken.",
     "<%=@first_name%> breathed <%=@his_her%> last breath shortly after receiving <%=@number_blows%> blows to the head from the deadly end of a rubber chicken.",
     "<%=@first_name%> left this world violently after receiving <%=@number_blows%> noisy whacks to the head by a rubber chicken.",
-    "<%=@first_name%> passed away after a <%=@attack_length%> second battle with a rubber-chicken wielding assassin.",
     "<%=@first_name%> was whacked, figuratively and literally, by a rubber-chicken wielding assassin.",
     "<%=@first_name%> was smote by a wild-eyed, rubber-chicken-wielding assassin.",
     "<%=@first_name%> was scratched off the surface of the earth after an untimely and unfortunate encounter with a rubber-chicken carrying assassin.",
@@ -96,18 +96,6 @@ class ObituariesController < ApplicationController
   def index
   end
 
-  def get_locations(long_lat, access_token)
-    response = RestClient.get "https://graph.facebook.com/search", :params => {
-      :type => "place",
-      :center => long_lat,
-      :distance => "1000",
-      :access_token => access_token
-    }
-    return JSON.parse(response.body)
-  end
-
-  # TODO: Fill in Access token and victim name from DB
-  # TODO: Add defaults if can't pull facebook data just pull from our local array of random stuff
   def show
     @obituary = Obituary.find(params[:id])
 
@@ -137,29 +125,38 @@ class ObituariesController < ApplicationController
     @favorite_book = @obituary.favorite_book
     @last_status_update = @obituary.last_status_update
     
-    @number_blows = "NUMBER_BLOWS"
-    @attack_length = "LENGTH_ATTACK" #in seconds
-    @sequence_last_blow = "LAST_BLOW" #need last blow that killed the victim
-    @recent_event = "RECENT EVENT"
+    @sequence_array = @obituary.kill.attack_sequence.split(',')
+    @number_blows = @sequence_array.length
+    @char_to_txt_map = {
+      "L" => "a forehand",
+      "R" => "a backhand",
+      "U" => "an uppercut", 
+      "D" => "a slashing",
+      "F" => "a beak first",
+      "B" => "a beak first"
+    }
+    @attack_length = rand(60) #in seconds
+    @sequence_last_blow = @char_to_txt_map[@sequence_array[@sequence_array.length - 1]]
+    @recent_event = @obituary.recent_event
     
     @location = @obituary.location
 
     #for testing individual strings - make the entry you want to test the first in the array
-    #@intro = INTRO.first
-    #@death_desc = DEATH_DESC.first
-    #@leaving_behind = LEAVING_BEHIND.first
-    #@leaving_behind2 = LEAVING_BEHIND2.first
-    #@final_words = FINAL_WORDS.first
-    #@assassin_section = ASSASSIN_SECTION.first
-    #@join_assassin = JOIN_ASSASSIN.first
+    @intro = INTRO.first
+    @death_desc = DEATH_DESC.first
+    @leaving_behind = LEAVING_BEHIND.first
+    @leaving_behind2 = LEAVING_BEHIND2.first
+    @final_words = FINAL_WORDS.first
+    @assassin_section = ASSASSIN_SECTION.first
+    @join_assassin = JOIN_ASSASSIN.first
 
     # Uncomment this to show random lines from each part
-    @intro = INTRO[rand(INTRO.size)]
-    @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
-    @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
-    @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
-    @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
-    @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
-    @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
+    # @intro = INTRO[rand(INTRO.size)]
+    # @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
+    # @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
+    # @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
+    # @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
+    # @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
+    # @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
   end
 end
