@@ -136,17 +136,15 @@ class KillsController < ApplicationController
       :location => @location
     )
     
-    
-
     if @kill.save
       begin
-        response = RestClient.post "https://graph.facebook.com/#{@kill.victim_id}/feed", :params => {
+        response = RestClient.post("https://graph.facebook.com/#{@kill.victim_id}/feed", :params => {
           :access_token => @access_token,
           :link => obituary_url(@kill.obituary),
           :picture => @kill.photo.thumb('75x75#').process(:sepia).url,
           :name => "#{@obituary.first_name} was just assassinated by rubber chicken!",
-          :description => "#{@obituary.first_name} was bludgeoned to death by a rubber chicken.  Read the victim’s full obituary."
-        }
+          :description => "#{@obituary.first_name} was bludgeoned to death by a rubber chicken. Read the victim's full obituary."
+        })
       rescue
       end
       render :text => obituary_url(@kill.obituary)
