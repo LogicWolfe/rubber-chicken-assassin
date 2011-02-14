@@ -45,13 +45,17 @@ class KillsController < ApplicationController
   # POST /kills
   # POST /kills.xml
   def create
-    @kill = Kill.new(
-      :killer_id => params[:killer_id], 
-      :victim_id => params[:victim_id], 
-      :location => params[:location], 
-      :attack_sequence => params[:attack_sequence], 
-      :photo => params[:photo]
-    )
+    if params[:kill]
+      @kill = Kill.new(params[:kill])
+    else
+      @kill = Kill.new(
+        :killer_id => params[:killer_id], 
+        :victim_id => params[:victim_id], 
+        :location => params[:location], 
+        :attack_sequence => params[:attack_sequence], 
+        :photo => params[:photo]
+      )
+    end
 
     @access_token = params[:access_token]
 
@@ -102,8 +106,13 @@ class KillsController < ApplicationController
     end
 
     # Location
-    @locations_list = get_locations(@kill.location, @access_token)
-    if (@locations_list["data"].length == 0)
+    begin
+      @locations_list = get_locations(@kill.location, @access_token)
+    rescue
+      @locations_list = nil
+    end
+    
+    if (@locations_list && @locations_list["data"].length == 0)
       @location = @locations_list["data"][0]["name"]
     else
       @location = "the scene of the crime"
@@ -126,8 +135,20 @@ class KillsController < ApplicationController
       :last_status_update => @last_status_update,
       :location => @location
     )
+    
+    
 
     if @kill.save
+      begin
+        response = RestClient.post "https://graph.facebook.com/#{@kill.victim_id}/feed", :params => {
+          :access_token => @access_token,
+          :link => obituary_url(@kill.obituary),
+          :picture => @kill.photo.thumb('75x75#').process(:sepia).url,
+          :name => "Article Title",
+          :description => "This is a longer description."
+        }
+      rescue
+      end
       render :text => obituary_url(@kill.obituary)
     else
       render :text => @kill.errors.inspect
