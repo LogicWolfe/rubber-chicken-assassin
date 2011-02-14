@@ -112,25 +112,29 @@ class ObituariesController < ApplicationController
 
     @first_name = @obituary.first_name
     @last_name = @obituary.last_name
-    
+
     @full_date = @obituary.created_at.strftime("%B %d, %Y")
     @time_killed = @obituary.created_at.strftime("%I:%M %p")
-    
+
     @assassin_full_name = @obituary.assassin_full_name
-    @assassin_photo_url = @obituary.assassin_photo.process(:sepia).url
-    
+    if (@obituary.assassin_photo.process(:sepia).url == nil)
+      @assassin_photo_url = @obituary.assassin_photo.process(:sepia).url
+    else
+      @assassin_photo_url = "https://graph.facebook.com/#{@obituary.kill.killer_id}/picture?type=large"
+    end
+
     @fb_friends_count = @obituary.fb_friends_count
     @favorite_movie = @obituary.favorite_movie
     @favorite_band = @obituary.favorite_band
     @favorite_book = @obituary.favorite_book
     @last_status_update = @obituary.last_status_update
-    
+
     @sequence_array = @obituary.kill.attack_sequence.split(',')
     @number_blows = @sequence_array.length
     @char_to_txt_map = {
       "L" => "a forehand",
       "R" => "a backhand",
-      "U" => "an uppercut", 
+      "U" => "an uppercut",
       "D" => "a slashing",
       "F" => "a beak first",
       "B" => "a beak first"
@@ -138,25 +142,25 @@ class ObituariesController < ApplicationController
     @attack_length = rand(60) #in seconds
     @sequence_last_blow = @char_to_txt_map[@sequence_array[@sequence_array.length - 1]]
     @recent_event = @obituary.recent_event
-    
+
     @location = @obituary.location
 
     #for testing individual strings - make the entry you want to test the first in the array
-    @intro = INTRO.first
-    @death_desc = DEATH_DESC.first
-    @leaving_behind = LEAVING_BEHIND.first
-    @leaving_behind2 = LEAVING_BEHIND2.first
-    @final_words = FINAL_WORDS.first
-    @assassin_section = ASSASSIN_SECTION.first
-    @join_assassin = JOIN_ASSASSIN.first
+    # @intro = INTRO.first
+    # @death_desc = DEATH_DESC.first
+    # @leaving_behind = LEAVING_BEHIND.first
+    # @leaving_behind2 = LEAVING_BEHIND2.first
+    # @final_words = FINAL_WORDS.first
+    # @assassin_section = ASSASSIN_SECTION.first
+    # @join_assassin = JOIN_ASSASSIN.first
 
     # Uncomment this to show random lines from each part
-    # @intro = INTRO[rand(INTRO.size)]
-    # @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
-    # @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
-    # @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
-    # @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
-    # @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
-    # @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
+    @intro = INTRO[rand(INTRO.size)]
+    @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
+    @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
+    @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
+    @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
+    @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
+    @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
   end
 end
