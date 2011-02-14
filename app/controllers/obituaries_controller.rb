@@ -72,64 +72,6 @@ class ObituariesController < ApplicationController
     "7 cats."
   ]
 
-  FAV_BOOK = [
-    "Curious George Visits The Proctologist",
-    "Zen and the Art of Bikini Waxing",
-    "The Dummies Guide to Making Love",
-    "Savage Passion",
-    "Truth, Dare, or Handcuffs",
-    "Songs of the Humpback Whale",
-    "I Wish I Knew How to Quit You",
-    "I Heart You, You Haunt Me",
-    "Are You There Vodka? It's Me Chelsea",
-    "The Stainless Steel Rat Saves the World",
-    "The Complete Idiot's Guide to Understanding Intelligent Design"
-  ]
-
-  FAV_MOVIE = [
-    "Attack of the 50' Woman",
-    "Garfield: The Movie",
-    "Bridges of Madison County",
-    "Conan the Barbarian",
-    "Police Academy 6",
-    "Macho Sluts",
-    "Spiderman 3",
-    "Howard the Duck",
-    "Mac and Me",
-    "Highlander 2: The Quickening",
-    "It's Pat",
-    "Showgirls",
-    "Battlefield Earth",
-    "Gigli",
-    "Catwoman",
-    "Son of the Mask"
-  ]
-
-  FAV_BAND = [
-    "Bananarama",
-    "Michael Bolton",
-    "Justin Bieber",
-    "The Backstreet Boys",
-    "David Hasselhoff",
-    "The Bacon Brothers",
-    "Blink 182",
-    "Creed",
-    "Nickelback",
-    "Limp Bizkit",
-    "The Insane Clown Posse",
-    "Bon Jovi",
-    "Genesis",
-    "Jonas Brothers"
-  ]
-  
-  RECENT_EVENT = [
-    "Michael Franti Plays At The Forum",
-    "Care Bears LIVE",
-    "Dinner at Aunt Shirley's",
-    "Smurfs On Ice",
-    "Betty's 34th Birthday"
-  ]
-
   FINAL_WORDS = [
     "Friends will always remember how <%=@he_she%> recently said \"<%=@last_status_update%>\".",
     "<%=@first_name%>'s final words were \"<%=@last_status_update%>\".",

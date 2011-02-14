@@ -45,38 +45,50 @@ class KillsController < ApplicationController
   # POST /kills
   # POST /kills.xml
   def create
-    @kill = Kill.new(params[:kill])
+    @kill = Kill.new(
+      :killer_id => params[:killer_id], 
+      :victim_id => params[:victim_id], 
+      :location => params[:location], 
+      :attack_sequence => params[:attack_sequence], 
+      :photo => params[:photo]
+    )
 
     @access_token = params[:access_token]
 
     @assassin = get_facebook_data(@kill.killer_id, nil, @access_token)
     @victim = get_facebook_data(@kill.victim_id, nil, @access_token)
-    @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
+
+    begin
+      @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
+      @fb_friends_count = friends["data"].length
+    rescue
+      @fb_friends_count = nil
+    end
 
     @body = get_facebook_data(@kill.victim_id, 'movies', @access_token)
     if (@body["data"][0] == nil)
-      @favorite_movie = 'DEFAULT'
+      @favorite_movie = nil
     else
       @favorite_movie = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'music', @access_token)
     if (@body["data"][0] == nil)
-      @favorite_band = 'DEFAULT'
+      @favorite_band = nil
     else
       @favorite_band = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'books', @access_token)
     if (@body["data"][0] == nil)
-      @favorite_book = 'DEFAULT'
+      @favorite_book = nil
     else
       @favorite_book = @body["data"][0]["name"]
     end
 
     @body = get_facebook_data(@kill.victim_id, 'events', @access_token)
     if (@body["data"][0] == nil)
-      @recent_event = 'DEFAULT'
+      @recent_event = nil
     else
       @recent_event = @body["data"][0]["name"]
     end
@@ -106,18 +118,17 @@ class KillsController < ApplicationController
         :access_token => @access_token
       }).body,
       :gender => @victim["gender"],
-      :fb_friends_count => @friends["data"].length,
+      :fb_friends_count => @fb_friends_count,
       :favorite_movie => @favorite_movie,
       :favorite_band => @favorite_band,
       :favorite_book => @favorite_book,
       :recent_event => @recent_event,
       :last_status_update => @last_status_update,
-      :location => @location,
-      :attack_sequence => @kill.attack_sequence
+      :location => @location
     )
 
     if @kill.save
-      render :text => obituary_path(@kill.obituary)
+      render :text => obituary_url(@kill.obituary)
     else
       render :text => @kill.errors.inspect
     end
