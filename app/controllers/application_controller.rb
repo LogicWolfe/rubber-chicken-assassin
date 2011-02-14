@@ -3,10 +3,8 @@ class ApplicationController < ActionController::Base
 
   def get_facebook_data(victim, type, access_token)
     if type == nil
-      logger.ap ["https://graph.facebook.com/#{victim}", :params => { :access_token => access_token }]
       response = RestClient.get "https://graph.facebook.com/#{victim}", :params => { :access_token => access_token }
     else
-      logger.ap ["https://graph.facebook.com/#{victim}/#{type}", :params => { :access_token => access_token }]
       response = RestClient.get "https://graph.facebook.com/#{victim}/#{type}", :params => { :access_token => access_token }
     end
     return JSON.parse(response.body)
