@@ -90,7 +90,7 @@ class ObituariesController < ApplicationController
   ]
 
   JOIN_ASSASSIN = [
-    "Concerned family encourage all of <%=@first_name%>'s friends to join the bounty hunt at <a href='www.chickenassassin.com'>www.chickenassassin.com</a>"
+    "Concerned family encourage all of <%=@first_name%>'s friends to join the bounty hunt at <a href='http://www.chickenassassin.com'>www.chickenassassin.com</a>"
   ]
 
   def index
