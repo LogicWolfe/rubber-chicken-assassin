@@ -129,7 +129,7 @@ class ObituariesController < ApplicationController
     @favorite_book = @obituary.favorite_book
     @last_status_update = @obituary.last_status_update
 
-    @sequence_array = @obituary.kill.attack_sequence.split(',')
+    @sequence_array = @obituary.kill.attack_sequence.split('')
     @number_blows = @sequence_array.length
     @char_to_txt_map = {
       "L" => "a forehand",
