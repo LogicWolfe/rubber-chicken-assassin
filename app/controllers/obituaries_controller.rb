@@ -14,7 +14,7 @@ class ObituariesController < ApplicationController
   DEATH_DESC = [
     "<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.",
     "<%=@first_name%> passed away after a <%=@attack_length%> second battle with a rubber-chicken wielding assassin.",
-    "<%=@first_name%> was tragically assassinated; an autopsy has revelaed that a deadly <%=@sequence_last_blow%> blow from a rubber cheicken was the cause of death.",
+    "<%=@first_name%> was tragically assassinated; an autopsy has revealed that a deadly <%=@sequence_last_blow%> blow from a rubber chicken was the cause of death.",
     "<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.",
     "<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.",
     "<%=@first_name%> was quickly rendered lifeless after receiving <%=@number_blows%> blows to the head from the business end of a rubber chicken.",
@@ -61,12 +61,12 @@ class ObituariesController < ApplicationController
     "will always be remembered for a love of green lollipops.",
     "was known for a love of toast.",
     "was known for a love of daffodils and porcupines.",
-    "was sorely missed by the barflies at Mickey's Bar and Grill, a favourite Friday hangout for the better part of 10 years until that untimely fire back in '02.",
+    "was sorely missed by the barflies at Mickey's Bar and Grill, a favorite Friday hangout for the better part of 10 years until that untimely fire back in '02.",
     "was sorely missed by the local 401 veterans unit.",
     "was a proud supporter of the nudist colony in the next town over.",
     "a beautiful set of crocheted cushion covers.",
     "a bicycle built for two.",
-    "<%=@his_her%> favourite goldfish.",
+    "<%=@his_her%> favorite goldfish.",
     "an extensive porn collection.",
     "several squirrels who live in a tree outside <%=@his_her%> home.",
     "7 cats."
