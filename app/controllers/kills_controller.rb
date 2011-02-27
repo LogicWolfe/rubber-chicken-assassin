@@ -29,7 +29,7 @@ class KillsController < ApplicationController
     @kill = Kill.new
 
     @kill.killer_id = "583002418"
-    @kill.victim_id = "511852582"
+    @kill.victim_id = "867800458"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -64,7 +64,7 @@ class KillsController < ApplicationController
 
     begin
       @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
-      @fb_friends_count = friends["data"].length
+      @fb_friends_count = @friends["data"].length
     rescue
       @fb_friends_count = nil
     end
