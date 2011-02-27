@@ -12,9 +12,7 @@ gem 'wirble'
 gem 'hirb'
 gem 'awesome_print'
 
-group :notwindows do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 gem 'haml'
 gem 'compass', ">= 0.10.6"
