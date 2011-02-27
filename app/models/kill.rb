@@ -79,4 +79,8 @@ class Kill < ActiveRecord::Base
   def fb_friends_count
     self.fb_friends_count || rand(150)
   end
+
+  def attack_sequence=(val)
+    write_attribute(:attack_sequence, val.upcase)
+  end
 end
