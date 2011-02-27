@@ -122,14 +122,16 @@ class KillsController < ApplicationController
       @location = "the scene of the crime"
     end
 
+    @assassin_photo = RestClient.get("https://graph.facebook.com/#{@kill.killer_id}/picture", :params => {
+      :type => :large,
+      :access_token => @access_token
+    }).body
+
     @kill.create_obituary(
       :first_name => @victim["first_name"],
       :last_name => @victim["last_name"],
       :assassin_full_name => @assassin["name"],
-      :assassin_photo => RestClient.get("https://graph.facebook.com/#{@kill.killer_id}/picture", :params => {
-        :type => :large,
-        :access_token => @access_token
-      }).body,
+      :assassin_photo => @assassin_photo,
       :gender => @victim["gender"],
       :fb_friends_count => @fb_friends_count,
       :favorite_movie => @favorite_movie,

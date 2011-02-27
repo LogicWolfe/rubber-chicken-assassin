@@ -117,10 +117,11 @@ class ObituariesController < ApplicationController
     @time_killed = @obituary.created_at.strftime("%I:%M %p")
 
     @assassin_full_name = @obituary.assassin_full_name
-    if (@obituary.assassin_photo.process(:sepia).url == nil)
-      @assassin_photo_url = @obituary.assassin_photo.process(:sepia).url
-    else
+
+    if (@obituary.assassin_photo.process(:sepia).url.nil?)
       @assassin_photo_url = "https://graph.facebook.com/#{@obituary.kill.killer_id}/picture?type=large"
+    else
+      @assassin_photo_url = @obituary.assassin_photo.process(:sepia).url
     end
 
     @fb_friends_count = @obituary.fb_friends_count
