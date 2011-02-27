@@ -91,6 +91,15 @@ class ObituariesController < ApplicationController
   JOIN_ASSASSIN = [
     "Concerned family encourage all of <%=@first_name%>'s friends to join the bounty hunt at <a href='http://www.chickenassassin.com'>www.chickenassassin.com</a>"
   ]
+  
+  FAKE_LAST_STATUS = [
+    "I'm not going to buy my kids an encyclopedia. Let them walk to school like I did",
+    "I like the color red because it's a fire. And I see myself as always being on fire",
+    "I am sweating out the vodka to make room for the whiskey tonight",
+    "If we aren't supposed to eat animals, why are they made of meat?",
+    "Why is the alphabet in that order? is it because of that song?",
+    "Strangers have the best candy"
+  ]
 
   def index
   end
