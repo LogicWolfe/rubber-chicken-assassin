@@ -98,11 +98,15 @@ class KillsController < ApplicationController
     end
 
     @body = get_facebook_data(@kill.victim_id, 'feed', @access_token)
-    for i in 0..@body["data"].length
-      if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@victim["first_name"] + " " + @victim["last_name"])))
-        @last_status_update = @body["data"][i]["message"]
-        break
+    if @body
+      for i in 0...@body["data"].length
+        if ((@body["data"][i]["to"] == nil) && (@body["data"][i]["message"] != nil) && (@body["data"][i]["from"]["name"] == (@victim["first_name"] + " " + @victim["last_name"])))
+          @last_status_update = @body["data"][i]["message"]
+          break
+        end
       end
+    else
+      @last_status_update = nil
     end
 
     # Location
