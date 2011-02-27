@@ -13,7 +13,6 @@ class ObituariesController < ApplicationController
 
   DEATH_DESC = [
     "<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.",
-    "<%=@first_name%> passed away after a <%=@attack_length%> second battle with a rubber-chicken wielding assassin.",
     "<%=@first_name%> was tragically assassinated; an autopsy has revealed that a deadly <%=@sequence_last_blow%> blow from a rubber chicken was the cause of death.",
     "<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.",
     "<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.",
@@ -140,7 +139,7 @@ class ObituariesController < ApplicationController
       "F" => "a beak first",
       "B" => "a beak first"
     }
-    @attack_length = rand(60) #in seconds
+    
     @sequence_last_blow = @char_to_txt_map[@sequence_array[@sequence_array.length - 1]]
     @recent_event = @obituary.recent_event
 
