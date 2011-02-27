@@ -13,8 +13,9 @@
   = @kill.location 
 
 %p
-  %bPhoto:
-  %img{:src => @kill.photo.url} 
+  %b Photo:
+  -if @kill.photo
+    %img{:src => @kill.photo.url} 
 
 %p
   %b Attack sequence:
