@@ -22,12 +22,7 @@ gem 'dragonfly'
 gem 'aws-s3'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'settingslogic'
-gem 'roadie', :git => "git://github.com/Mange/roadie.git"
-gem 'hpricot'
-gem 'memcache-client'
-gem 'nokogiri', '>=1.4.4'
 
-gem 'facebooker2'
 gem 'rest-client'
 gem 'pry'
 
