@@ -113,8 +113,8 @@ class ObituariesController < ApplicationController
     @first_name = @obituary.first_name
     @last_name = @obituary.last_name
 
-    @full_date = @obituary.created_at.strftime("%B %d, %Y")
-    @time_killed = @obituary.created_at.strftime("%I:%M %p")
+    @full_date = @obituary.kill.kill_date.strftime("%B %d, %Y")
+    @time_killed = @obituary.kill.kill_date.strftime("%I:%M %p")
 
     @assassin_full_name = @obituary.assassin_full_name
 

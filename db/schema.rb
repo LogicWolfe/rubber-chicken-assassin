@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110213231818) do
+ActiveRecord::Schema.define(:version => 20110228022427) do
 
   create_table "kills", :force => true do |t|
     t.integer  "killer_id",       :limit => 8
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110213231818) do
     t.string   "attack_sequence"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "kill_date"
   end
 
   create_table "obituaries", :force => true do |t|

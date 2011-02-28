@@ -5,4 +5,8 @@ class Kill < ActiveRecord::Base
   def attack_sequence=(val)
     write_attribute(:attack_sequence, val.upcase)
   end
+
+  def kill_date
+  	read_attribute(:kill_date) || self.created_at
+  end
 end

@@ -53,7 +53,8 @@ class KillsController < ApplicationController
         :victim_id => params[:victim_id], 
         :location => params[:location], 
         :attack_sequence => params[:attack_sequence], 
-        :photo => params[:photo]
+        :photo => params[:photo],
+        :kill_date => params[:kill_date]
       )
     end
 
