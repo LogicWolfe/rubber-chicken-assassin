@@ -97,7 +97,8 @@ class ObituariesController < ApplicationController
 
   def show
     @obituary = Obituary.find(params[:id])
-
+    random = Random.new(@obituary.id)
+    
     if (@obituary.gender == "male")
       @he_she = "he";
       @his_her = "his";
@@ -155,12 +156,12 @@ class ObituariesController < ApplicationController
     # @join_assassin = JOIN_ASSASSIN.first
 
     # Uncomment this to show random lines from each part
-    @intro = INTRO[rand(INTRO.size)]
-    @death_desc = DEATH_DESC[rand(DEATH_DESC.size)]
-    @leaving_behind = LEAVING_BEHIND[rand(LEAVING_BEHIND.size)]
-    @leaving_behind2 = LEAVING_BEHIND2[rand(LEAVING_BEHIND2.size)]
-    @final_words = FINAL_WORDS[rand(FINAL_WORDS.size)]
-    @assassin_section = ASSASSIN_SECTION[rand(ASSASSIN_SECTION.size)]
-    @join_assassin = JOIN_ASSASSIN[rand(JOIN_ASSASSIN.size)]
+    @intro = INTRO[random.rand(INTRO.size)]
+    @death_desc = DEATH_DESC[random.rand(DEATH_DESC.size)]
+    @leaving_behind = LEAVING_BEHIND[random.rand(LEAVING_BEHIND.size)]
+    @leaving_behind2 = LEAVING_BEHIND2[random.rand(LEAVING_BEHIND2.size)]
+    @final_words = FINAL_WORDS[random.rand(FINAL_WORDS.size)]
+    @assassin_section = ASSASSIN_SECTION[random.rand(ASSASSIN_SECTION.size)]
+    @join_assassin = JOIN_ASSASSIN[random.rand(JOIN_ASSASSIN.size)]
   end
 end

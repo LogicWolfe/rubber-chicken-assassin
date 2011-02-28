@@ -61,26 +61,32 @@ class Kill < ActiveRecord::Base
   ]
 
   def favorite_book
-    self.favorite_book || FAV_BOOK[rand(FAV_BOOK.length)]
+    self.favorite_book || self.randomize(FAV_BOOK)
   end
 
   def favorite_movie
-    self.favorite_movie || FAV_MOVIE[rand(FAV_MOVIE.length)]
+    self.favorite_movie || self.randomize(FAV_MOVIE)
   end
   
   def favorite_band
-    self.favorite_band || FAV_BAND[rand(FAV_BAND.length)]
+    self.favorite_band || self.randomize(FAV_BAND)
   end
   
   def recent_event
-    self.recent_event || RECENT_EVENT[rand(RECENT_EVENT.length)]
+    self.recent_event || self.randomize(RECENT_EVENT)
   end
   
   def fb_friends_count
-    self.fb_friends_count || rand(150)
+    self.fb_friends_count || self.randomize((0..150).to_a)
   end
 
   def attack_sequence=(val)
     write_attribute(:attack_sequence, val.upcase)
+  end
+
+  private
+  def randomize(arr)
+    r = Random.new(self.id+arr.length)
+    return arr[r.random(arr.length)]
   end
 end
