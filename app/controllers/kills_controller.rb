@@ -116,10 +116,10 @@ class KillsController < ApplicationController
       @locations_list = nil
     end
     
-    if (@locations_list && @locations_list["data"].length == 0)
-      @location = @locations_list["data"][0]["name"]
-    else
+    if (@locations_list && @locations_list["data"].length.zero?)
       @location = "the scene of the crime"
+    else
+      @location = @locations_list["data"][0]["name"]
     end
     
     @assassin_photo = RestClient.get("https://graph.facebook.com/#{@kill.killer_id}/picture", :params => {
