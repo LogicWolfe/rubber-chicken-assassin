@@ -7,10 +7,13 @@ gem 'rails', '3.0.4'
 
 gem 'sqlite3'
 
-gem 'mongrel', ">=1.2.0pre2"
-gem 'wirble'
-gem 'hirb'
-gem 'awesome_print'
+group :development do
+	gem 'mongrel', ">=1.2.0pre2"
+	gem 'wirble'
+	gem 'hirb'
+	gem 'awesome_print'
+	gem 'pry'
+end
 
 gem 'mysql2'
 
@@ -24,7 +27,6 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'settingslogic'
 
 gem 'rest-client'
-gem 'pry'
 
 # Use unicorn as the web server
 # gem 'unicorn'
