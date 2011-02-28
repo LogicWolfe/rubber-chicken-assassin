@@ -116,7 +116,7 @@ class KillsController < ApplicationController
       @locations_list = nil
     end
     
-    if (@locations_list && @locations_list["data"].length.zero?)
+    if (@locations_list.nil? || @locations_list["data"].length.zero?)
       @location = "the scene of the crime"
     else
       @location = @locations_list["data"][0]["name"]
