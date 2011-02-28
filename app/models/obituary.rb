@@ -90,7 +90,7 @@ class Obituary < ActiveRecord::Base
   end
   
   def fb_friends_count
-    read_attribute(:fb_friends_count) || 42
+    read_attribute(:fb_friends_count) || "many"
   end
 
   private
