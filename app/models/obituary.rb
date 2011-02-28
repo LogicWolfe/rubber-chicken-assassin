@@ -70,34 +70,33 @@ class Obituary < ActiveRecord::Base
   ]
 
   def favorite_book
-    self.favorite_book || self.randomize(FAV_BOOK)
+    read_attribute(:favorite_book) || randomize(FAV_BOOK)
   end
 
   def favorite_movie
-    self.favorite_movie || self.randomize(FAV_MOVIE)
+    read_attribute(:favorite_movie) || randomize(FAV_MOVIE)
   end
   
   def favorite_band
-    self.favorite_band || self.randomize(FAV_BAND)
+    read_attribute(:favorite_band) || randomize(FAV_BAND)
   end
   
   def recent_event
-    self.recent_event || self.randomize(RECENT_EVENT)
+    read_attribute(:recent_event) || randomize(RECENT_EVENT)
   end
   
   def last_status_update
-    self.recent_event || self.randomize(LAST_STATUS_UPDATE)
+    read_attribute(:last_status_update) || randomize(LAST_STATUS_UPDATE)
   end
   
   def fb_friends_count
-    self.fb_friends_count || self.randomize((0..150).to_a)
+    read_attribute(:fb_friends_count) || randomize((0..150).to_a)
   end
-
 
   private
   def randomize(arr)
-    r = Random.new(self.id+arr.length)
-    return arr[r.random(arr.length)]
+    r = Random.new(self.id.to_i+arr.length)
+    return arr[r.rand(arr.length)]
   end
 
 end

@@ -57,46 +57,54 @@ class KillsController < ApplicationController
       )
     end
 
+    logger.info 1
     @access_token = params[:access_token]
-
+logger.info 2
+    
     @assassin = get_facebook_data(@kill.killer_id, nil, @access_token)
     @victim = get_facebook_data(@kill.victim_id, nil, @access_token)
-
+logger.info 3
+    
     begin
       @friends = get_facebook_data(@kill.victim_id, 'friends', @access_token)
       @fb_friends_count = @friends["data"].length
     rescue
       @fb_friends_count = nil
     end
-
+logger.info 4
+    
     @body = get_facebook_data(@kill.victim_id, 'movies', @access_token)
     if (@body["data"][0] == nil)
       @favorite_movie = nil
     else
       @favorite_movie = @body["data"][0]["name"]
     end
-
+logger.info 5
+    
     @body = get_facebook_data(@kill.victim_id, 'music', @access_token)
     if (@body["data"][0] == nil)
       @favorite_band = nil
     else
       @favorite_band = @body["data"][0]["name"]
     end
-
+logger.info 6
+    
     @body = get_facebook_data(@kill.victim_id, 'books', @access_token)
     if (@body["data"][0] == nil)
       @favorite_book = nil
     else
       @favorite_book = @body["data"][0]["name"]
     end
-
+logger.info 7
+    
     @body = get_facebook_data(@kill.victim_id, 'events', @access_token)
     if (@body["data"][0] == nil)
       @recent_event = nil
     else
       @recent_event = @body["data"][0]["name"]
     end
-
+logger.info 8
+    
     @body = get_facebook_data(@kill.victim_id, 'feed', @access_token)
     if @body
       for i in 0...@body["data"].length
@@ -108,7 +116,8 @@ class KillsController < ApplicationController
     else
       @last_status_update = nil
     end
-
+logger.info 9
+    
     # Location
     begin
       @locations_list = get_locations(@kill.location, @access_token)
@@ -121,12 +130,14 @@ class KillsController < ApplicationController
     else
       @location = "the scene of the crime"
     end
-
+logger.info 10
+    
     @assassin_photo = RestClient.get("https://graph.facebook.com/#{@kill.killer_id}/picture", :params => {
       :type => :large,
       :access_token => @access_token
     }).body
-
+logger.info 11
+    
     @kill.create_obituary(
       :first_name => @victim["first_name"],
       :last_name => @victim["last_name"],
@@ -141,18 +152,9 @@ class KillsController < ApplicationController
       :last_status_update => @last_status_update,
       :location => @location
     )
+    logger.info 12
     
     if @kill.save
-      begin
-        response = RestClient.post("https://graph.facebook.com/#{@kill.victim_id}/feed", :params => {
-          :access_token => @access_token,
-          :link => obituary_url(@kill.obituary),
-          :picture => @kill.photo.thumb('75x75#').process(:sepia).url,
-          :name => "#{@obituary.first_name} was just assassinated by rubber chicken!",
-          :description => "#{@obituary.first_name} was bludgeoned to death by a rubber chicken. Read the victim's full obituary."
-        })
-      rescue
-      end
       render :text => obituary_url(@kill.obituary)
     else
       render :text => @kill.errors.inspect
