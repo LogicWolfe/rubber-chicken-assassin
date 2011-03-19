@@ -166,7 +166,7 @@ class ObituariesController < ApplicationController
   end
 
   def randomize(array)
-    array = array.map {|entry|
+    results = array.map {|entry|
       if (!entry.kind_of? Array)
         entry
       else
@@ -186,8 +186,18 @@ class ObituariesController < ApplicationController
       end
     }
 
-    array.compact!
+    results.compact!
 
-    return array[@random.rand(array.size)]
+    if (results.empty?)
+      results = array.map {|entry|
+        if (!entry.kind_of? Array)
+          entry
+        else
+          entry.first
+        end
+      }
+    end
+
+    return results[@random.rand(array.size)]
   end
 end
