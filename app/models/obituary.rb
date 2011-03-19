@@ -70,27 +70,63 @@ class Obituary < ActiveRecord::Base
   ]
 
   def favorite_book
-    read_attribute(:favorite_book) || randomize(FAV_BOOK)
+    if (read_attribute(:favorite_book))
+      read_attribute(:favorite_book)
+    else
+      result = randomize(FAV_BOOK)
+      result.meta.generated = true
+      result
+    end
   end
 
   def favorite_movie
-    read_attribute(:favorite_movie) || randomize(FAV_MOVIE)
+    if (read_attribute(:favorite_movie))
+      read_attribute(:favorite_movie)
+    else
+      result = randomize(FAV_MOVIE)
+      result.meta.generated = true
+      result
+    end
   end
   
   def favorite_band
-    read_attribute(:favorite_band) || randomize(FAV_BAND)
+    if (read_attribute(:favorite_band))
+      read_attribute(:favorite_band)
+    else
+      result = randomize(FAV_BAND)
+      result.meta.generated = true
+      result
+    end
   end
   
   def recent_event
-    read_attribute(:recent_event) || randomize(RECENT_EVENT)
+    if (read_attribute(:recent_event))
+      read_attribute(:recent_event)
+    else
+      result = randomize(RECENT_EVENT)
+      result.meta.generated = true
+      result
+    end
   end
   
   def last_status_update
-    read_attribute(:last_status_update) || randomize(LAST_STATUS_UPDATE)
+    if (read_attribute(:last_status_update))
+      read_attribute(:last_status_update)
+    else
+      result = randomize(LAST_STATUS_UPDATE)
+      result.meta.generated = true
+      result
+    end
   end
   
   def fb_friends_count
-    read_attribute(:fb_friends_count) || "many"
+    if (read_attribute(:fb_friends_count))
+      read_attribute(:fb_friends_count)
+    else
+      result = "many"
+      result.meta.generated = true
+      result
+    end
   end
 
   private

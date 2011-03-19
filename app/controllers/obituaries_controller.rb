@@ -1,7 +1,7 @@
 class ObituariesController < ApplicationController
   INTRO = [
-    "Embracing our spirituality we celebrate the life of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
-    "Together we mourn the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
+    ["Embracing our spirituality we celebrate the life of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.", :@full_date, :@first_name, :@last_name],
+    ["Together we mourn the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.", :@full_date, :@first_name, :@last_name],
     "With moderate regret we inform you of the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
     "With marginal regret we announce the loss of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
     "With not as much sadness as we expected we announce the passing of <%=@first_name%> <%=@last_name%> on <%=@full_date%>.",
@@ -97,7 +97,7 @@ class ObituariesController < ApplicationController
 
   def show
     @obituary = Obituary.find(params[:id])
-    random = Random.new(@obituary.id)
+    @random = Random.new(@obituary.id)
     
     if (@obituary.gender == "male")
       @he_she = "he";
@@ -156,12 +156,38 @@ class ObituariesController < ApplicationController
     # @join_assassin = JOIN_ASSASSIN.first
 
     # Uncomment this to show random lines from each part
-    @intro = INTRO[random.rand(INTRO.size)]
-    @death_desc = DEATH_DESC[random.rand(DEATH_DESC.size)]
-    @leaving_behind = LEAVING_BEHIND[random.rand(LEAVING_BEHIND.size)]
-    @leaving_behind2 = LEAVING_BEHIND2[random.rand(LEAVING_BEHIND2.size)]
-    @final_words = FINAL_WORDS[random.rand(FINAL_WORDS.size)]
-    @assassin_section = ASSASSIN_SECTION[random.rand(ASSASSIN_SECTION.size)]
-    @join_assassin = JOIN_ASSASSIN[random.rand(JOIN_ASSASSIN.size)]
+    @intro = randomize(INTRO)
+    @death_desc = randomize(DEATH_DESC)
+    @leaving_behind = randomize(LEAVING_BEHIND)
+    @leaving_behind2 = randomize(LEAVING_BEHIND2)
+    @final_words = randomize(FINAL_WORDS)
+    @assassin_section = randomize(ASSASSIN_SECTION)
+    @join_assassin = randomize(JOIN_ASSASSIN)
+  end
+
+  def randomize(array)
+    array = array.map {|entry|
+      if (!entry.kind_of? Array)
+        entry
+      else
+        value = entry.first
+        passed = true
+        entry[1..-1].each {|requirement|
+          req_value = instance_variable_get(requirement)
+          if (req_value.nil? || req_value.meta.generated)
+            passed = false
+          end
+        }
+        if passed
+          value
+        else
+          nil
+        end
+      end
+    }
+
+    array.compact!
+
+    return array[@random.rand(array.size)]
   end
 end
