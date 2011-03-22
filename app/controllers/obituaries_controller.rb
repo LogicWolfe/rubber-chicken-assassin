@@ -28,7 +28,7 @@ class ObituariesController < ApplicationController
   ]
 
   LEAVING_BEHIND = [
-    "<%=@he_she.capitalize%> leaves behind <%=@fb_friends_count%> friends"
+    ["<%=@he_she.capitalize%> leaves behind <%=@fb_friends_count%> friends", :@he_she, :@fb_friends_count]
   ]
 
   LEAVING_BEHIND2 = [
