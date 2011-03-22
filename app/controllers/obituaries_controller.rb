@@ -12,19 +12,19 @@ class ObituariesController < ApplicationController
   ]
 
   DEATH_DESC = [
-    "<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.",
-    "<%=@first_name%> was tragically assassinated; an autopsy has revealed that a deadly <%=@sequence_last_blow%> blow from a rubber chicken was the cause of death.",
-    "<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.",
-    "<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.",
-    "<%=@first_name%> was quickly rendered lifeless after receiving <%=@number_blows%> blows to the head from the business end of a rubber chicken.",
-    "<%=@first_name%> was bludgeoned to death from <%=@number_blows%> blows to the head delivered via rubber chicken.",
-    "<%=@first_name%> breathed <%=@his_her%> last breath shortly after receiving <%=@number_blows%> blows to the head from the deadly end of a rubber chicken.",
-    "<%=@first_name%> left this world violently after receiving <%=@number_blows%> noisy whacks to the head by a rubber chicken.",
-    "<%=@first_name%> was whacked, figuratively and literally, by a rubber-chicken wielding assassin.",
-    "<%=@first_name%> was smote by a wild-eyed, rubber-chicken-wielding assassin.",
-    "<%=@first_name%> was scratched off the surface of the earth after an untimely and unfortunate encounter with a rubber-chicken carrying assassin.",
-    "<%=@first_name%> died as a result of a humorous yet persistent assault via rubber chicken.",
-    "<%=@first_name%> was ruthlessly bludgeoned to death with a rubber chicken wielded by an assassin."
+    ["<%=@first_name%> was maliciously murdered by <%=@sequence_last_blow%> strike from a rubber chicken.", :@first_name, :@sequence_last_blow],
+    ["<%=@first_name%> was tragically assassinated; an autopsy has revealed that a deadly <%=@sequence_last_blow%> blow from a rubber chicken was the cause of death.", :@first_name, :@sequence_last_blow],
+    ["<%=@first_name%> was viciously decapitated by a <%=@sequence_last_blow%> strike from a rubber chicken.", :@first_name, :@sequence_last_blow],
+    ["<%=@first_name%> kicked the bucket after receiving <%=@number_blows%> comical whacks to the head by a rubber chicken.", :@first_name, :@number_blows],
+    ["<%=@first_name%> was quickly rendered lifeless after receiving <%=@number_blows%> blows to the head from the business end of a rubber chicken.", :@first_name, :@number_blows],
+    ["<%=@first_name%> was bludgeoned to death from <%=@number_blows%> blows to the head delivered via rubber chicken.", :@first_name, :@number_blows],
+    ["<%=@first_name%> breathed <%=@his_her%> last breath shortly after receiving <%=@number_blows%> blows to the head from the deadly end of a rubber chicken.", :@first_name, :@his_her, :@number_blows],
+    ["<%=@first_name%> left this world violently after receiving <%=@number_blows%> noisy whacks to the head by a rubber chicken.", :@first_name, :@number_blows],
+    ["<%=@first_name%> was whacked, figuratively and literally, by a rubber-chicken wielding assassin.", :@first_name],
+    ["<%=@first_name%> was smote by a wild-eyed, rubber-chicken-wielding assassin.", :@first_name],
+    ["<%=@first_name%> was scratched off the surface of the earth after an untimely and unfortunate encounter with a rubber-chicken carrying assassin.", :@first_name],
+    ["<%=@first_name%> died as a result of a humorous yet persistent assault via rubber chicken.", :@first_name],
+    ["<%=@first_name%> was ruthlessly bludgeoned to death with a rubber chicken wielded by an assassin." :@first_name],
   ]
 
   LEAVING_BEHIND = [
