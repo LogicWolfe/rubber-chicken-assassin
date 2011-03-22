@@ -72,12 +72,12 @@ class ObituariesController < ApplicationController
   ]
 
   FINAL_WORDS = [
-    "Friends will always remember how <%=@he_she%> recently said \"<%=@last_status_update%>\".",
-    "<%=@first_name%>'s final words were \"<%=@last_status_update%>\".",
-    "<%=@first_name%> received world-wide acclaim recently when <%=@he_she%> stated \"<%=@last_status_update%>\".",
-    "Witnesses reported that <%=@first_name%>'s final statement to the world was \"<%=@last_status_update%>\".",
-    "<%=@first_name%>'s family knows that it will bring comfort to all to know that <%=@his_her%> final words were \"<%=@last_status_update%>\".",
-    "<%=@first_name%> asked to be remembered by <%=@his_her%> final words, \"<%=@last_status_update%>\"."
+    ["Friends will always remember how <%=@he_she%> recently said \"<%=@last_status_update%>\".", :@he_she, :@last_status_update],
+    ["<%=@first_name%>'s final words were \"<%=@last_status_update%>\".", :@first_name, :@last_status_update],
+    ["<%=@first_name%> received world-wide acclaim recently when <%=@he_she%> stated \"<%=@last_status_update%>\".", :@first_name, :@he_she, :@last_status_update],
+    ["Witnesses reported that <%=@first_name%>'s final statement to the world was \"<%=@last_status_update%>\".", :@first_name, :@last_status_update],
+    ["<%=@first_name%>'s family knows that it will bring comfort to all to know that <%=@his_her%> final words were \"<%=@last_status_update%>\".", :@first_name, :@his_her, :@last_status_update],
+    ["<%=@first_name%> asked to be remembered by <%=@his_her%> final words, \"<%=@last_status_update%>\".", :@first_name, :@his_her, :@last_status_update]
   ]
 
   ASSASSIN_SECTION = [
